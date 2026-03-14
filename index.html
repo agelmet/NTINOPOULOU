@@ -76,8 +76,8 @@
             filter: blur(0);
         }
         
-        /* Lightbox & Modal */
-        #lightbox, #service-modal {
+        /* Lightbox Container */
+        #lightbox {
             display: none;
             position: fixed;
             z-index: 9999;
@@ -89,7 +89,7 @@
             opacity: 0;
             transition: opacity 0.4s ease;
         }
-        #lightbox.active, #service-modal.active {
+        #lightbox.active {
             display: flex;
             opacity: 1;
         }
@@ -103,18 +103,10 @@
         }
         #lightbox.active img { transform: scale(1); }
 
-        .modal-content {
-            transform: translateY(40px) scale(0.95);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        #service-modal.active .modal-content {
-            transform: translateY(0) scale(1);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 30px;
-            right: 30px;
+        .lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 20px;
             color: #016171;
             cursor: pointer;
             padding: 12px;
@@ -122,13 +114,44 @@
             border-radius: 50%;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
-            z-index: 100;
+            z-index: 10000;
         }
-        .close-btn:hover { transform: scale(1.1) rotate(90deg); }
+        .lightbox-close:hover { transform: scale(1.1) rotate(90deg); }
+
+        /* Modal Container */
+        #service-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            inset: 0;
+            background: rgba(245, 245, 247, 0.85);
+            backdrop-filter: blur(15px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            padding: 1rem;
+        }
+        #service-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-wrapper {
+            transform: translateY(40px) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #service-modal.active .modal-wrapper {
+            transform: translateY(0) scale(1);
+        }
 
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f5f5f7; }
         ::-webkit-scrollbar-thumb { background: #016171; border-radius: 10px; }
+
+        .modal-scrollable-content::-webkit-scrollbar { width: 6px; }
+        .modal-scrollable-content::-webkit-scrollbar-track { background: transparent; }
+        .modal-scrollable-content::-webkit-scrollbar-thumb { background: rgba(1, 97, 113, 0.3); border-radius: 10px; }
+        .modal-scrollable-content::-webkit-scrollbar-thumb:hover { background: rgba(1, 97, 113, 0.6); }
 
         .hero-bg { background: linear-gradient(180deg, #ffffff 0%, #eef5f4 100%); }
 
@@ -140,7 +163,6 @@
             transform: translateZ(40px);
         }
 
-        /* Roadmap Line Animation */
         .roadmap-line {
             background-image: linear-gradient(to bottom, transparent 50%, rgba(1, 97, 113, 0.2) 50%);
             background-size: 100% 20px;
@@ -152,22 +174,28 @@
 <body class="bg-brand-offwhite text-gray-800 font-sans antialiased overflow-x-hidden selection:bg-brand-teal selection:text-white">
 
     <div id="lightbox" onclick="closeLightbox()">
-        <i data-lucide="x" class="close-btn" onclick="closeLightbox()"></i>
+        <i data-lucide="x" class="lightbox-close" onclick="closeLightbox()"></i>
         <img id="lightbox-img" src="" alt="Zoomed image" onclick="event.stopPropagation()">
     </div>
 
     <div id="service-modal" onclick="closeServiceModal()">
-        <i data-lucide="x" class="close-btn" onclick="closeServiceModal()"></i>
-        <div class="modal-content w-full max-w-2xl bg-white rounded-[40px] p-10 md:p-14 m-6 shadow-2xl relative overflow-hidden" onclick="event.stopPropagation()">
-            <div class="absolute -top-20 -right-20 w-64 h-64 bg-brand-peach/20 rounded-full blur-[40px] pointer-events-none"></div>
+        <div class="modal-wrapper relative w-full max-w-2xl bg-white rounded-[30px] md:rounded-[40px] shadow-2xl flex flex-col max-h-[90vh] md:max-h-[85vh] overflow-hidden" onclick="event.stopPropagation()">
             
-            <div id="modal-icon" class="w-16 h-16 rounded-2xl bg-brand-teal/10 flex items-center justify-center text-brand-teal mb-8"></div>
-            <h3 id="modal-title" class="font-serif text-3xl md:text-4xl text-gray-800 mb-6 uppercase"></h3>
-            <p id="modal-text" class="text-gray-600 leading-relaxed font-light text-lg"></p>
-            
-            <button onclick="document.getElementById('roadmap').scrollIntoView(); closeServiceModal();" class="mt-10 inline-flex items-center gap-3 bg-brand-teal text-white px-8 py-4 rounded-full text-sm font-semibold tracking-widest uppercase hover:bg-brand-teal/90 transition-all hover:shadow-lg hover:-translate-y-1">
-                ΠΩΣ ΝΑ ΞΕΚΙΝΗΣΟΥΜΕ <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <button onclick="closeServiceModal()" class="absolute top-4 right-4 md:top-6 md:right-6 z-50 bg-white/90 backdrop-blur-sm text-brand-teal p-3 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.1)] hover:scale-110 hover:rotate-90 transition-all duration-300 border border-gray-100">
+                <i data-lucide="x" class="w-5 h-5"></i>
             </button>
+
+            <div class="modal-scrollable-content overflow-y-auto overscroll-contain w-full h-full p-8 pt-16 md:p-14 relative rounded-[30px] md:rounded-[40px]">
+                <div class="absolute -top-10 -right-10 w-64 h-64 bg-brand-peach/20 rounded-full blur-[40px] pointer-events-none z-0"></div>
+                
+                <div id="modal-icon" class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-brand-teal/10 flex items-center justify-center text-brand-teal mb-6 md:mb-8 relative z-10"></div>
+                <h3 id="modal-title" class="font-serif text-2xl md:text-4xl text-gray-800 mb-4 md:mb-6 uppercase relative z-10"></h3>
+                <p id="modal-text" class="text-gray-600 leading-relaxed font-light text-base md:text-lg relative z-10"></p>
+                
+                <button onclick="document.getElementById('roadmap').scrollIntoView(); closeServiceModal();" class="mt-8 md:mt-10 inline-flex items-center gap-3 bg-brand-teal text-white px-6 md:px-8 py-4 rounded-full text-sm font-semibold tracking-widest uppercase hover:bg-brand-teal/90 transition-all hover:shadow-lg hover:-translate-y-1 relative z-10">
+                    ΠΩΣ ΝΑ ΞΕΚΙΝΗΣΟΥΜΕ <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -560,8 +588,9 @@
                 </div>
 
                 <div class="mt-12 flex gap-4">
-                    <a href="https://www.instagram.com/healyouwell?igsh=ZDJ1NXo2dno4ZGF5" target="_blank" class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-peach hover:text-brand-teal transition-all duration-300 hover:scale-110">
+                    <a href="https://www.instagram.com/healyouwell?igsh=ZDJ1NXo2dno4ZGF5" target="_blank" class="h-14 px-6 rounded-full bg-white/10 flex items-center gap-3 hover:bg-brand-peach hover:text-brand-teal transition-all duration-300 hover:-translate-y-1 group">
                         <i data-lucide="instagram" class="w-6 h-6"></i>
+                        <span class="text-sm font-semibold tracking-widest">@healyouwell</span>
                     </a>
                 </div>
             </div>
@@ -723,6 +752,8 @@
             lucide.createIcons();
             serviceModal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            document.querySelector('.modal-scrollable-content').scrollTop = 0;
         }
         function closeServiceModal() {
             serviceModal.classList.remove('active');
