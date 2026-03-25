@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Ψυχολόγος Νέα Ιωνία | Αριάδνη-Αθηνά Ντινοπούλου | CBT & Συστημική</title>
-    <meta name="description" content="Η Αριάδνη-Αθηνά Ντινοπούλου, Ψυχολόγος & Συστημική Ψυχοθεραπεύτρια. Εξειδίκευση σε CBT, DBT, CFT, ACT. Συνεδρίες διαδικτυακά ή δια ζώσης.">
-    <meta name="keywords" content="Ψυχολόγος, Συστημική Ψυχοθεραπεία, CBT, DBT, ACT, CFT, WISC-V, Αριάδνη Ντινοπούλου, Ψυχοθεραπεία παιδιών, διαδικτυακή ψυχοθεραπεία, online ψυχοθεραπεία">
+    <title>Ψυχολόγος Νέα Ιωνία | Αριάδνη-Αθηνά Ντινοπούλου | Ψυχοθεραπεία</title>
+    <meta name="description" content="Η Αριάδνη-Αθηνά Ντινοπούλου, Ειδικευόμενη Συστημική Ψυχοθεραπεύτρια στη Νέα Ιωνία, προσφέρει ατομική και οικογενειακή θεραπεία. Κλείστε 1η δωρεάν συνεδρία!">
+    <meta name="keywords" content="Ψυχολόγος, Νέα Ιωνία, Συστημική Ψυχοθεραπεία, Ψυχοθεραπευτής, Αριάδνη Ντινοπούλου, Ψυχοθεραπεία παιδιών, Ψυχοθεραπεία ενηλίκων, Συμβουλευτική ζεύγους">
     <meta name="author" content="Αριάδνη-Αθηνά Ντινοπούλου">
     
     <link rel="icon" href="https://github.com/agelmet/NTINOPOULOU/blob/main/logoo.jpg?raw=true" type="image/jpeg">
@@ -38,9 +38,6 @@
                         'blob': 'blob 7s infinite',
                         'fade-in-up': 'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
                         'bounce-slow': 'bounce 3s infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'spin-slow': 'spin 20s linear infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         blob: {
@@ -52,10 +49,6 @@
                         fadeInUp: {
                             '0%': { opacity: '0', transform: 'translateY(40px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
                         }
                     }
                 }
@@ -64,6 +57,7 @@
     </script>
 
     <style>
+        /* Smooth Reveal Classes for Intersection Observer */
         .reveal {
             opacity: 0;
             transform: translateY(30px) scale(0.98);
@@ -76,18 +70,18 @@
             filter: blur(0);
         }
         
-        /* Lightbox Container */
+        /* Lightbox Styles */
         #lightbox {
             display: none;
             position: fixed;
             z-index: 9999;
             inset: 0;
-            background: rgba(245, 245, 247, 0.85);
-            backdrop-filter: blur(15px);
+            background: rgba(245, 245, 247, 0.95);
+            backdrop-filter: blur(10px);
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.3s ease;
         }
         #lightbox.active {
             display: flex;
@@ -99,71 +93,38 @@
             border-radius: 20px;
             box-shadow: 0 25px 50px -12px rgba(1, 97, 113, 0.25);
             transform: scale(0.95);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.3s ease;
         }
-        #lightbox.active img { transform: scale(1); }
-
-        .lightbox-close {
-            position: fixed;
-            top: 20px;
-            right: 20px;
+        #lightbox.active img {
+            transform: scale(1);
+        }
+        #lightbox-close {
+            position: absolute;
+            top: 40px;
+            right: 40px;
             color: #016171;
             cursor: pointer;
-            padding: 12px;
+            padding: 10px;
             background: white;
             border-radius: 50%;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            z-index: 10000;
-        }
-        .lightbox-close:hover { transform: scale(1.1) rotate(90deg); }
-
-        /* Modal Container */
-        #service-modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            inset: 0;
-            background: rgba(245, 245, 247, 0.85);
-            backdrop-filter: blur(15px);
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            padding: 1rem;
-        }
-        #service-modal.active {
-            display: flex;
-            opacity: 1;
-        }
-        .modal-wrapper {
-            transform: translateY(40px) scale(0.95);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        #service-modal.active .modal-wrapper {
-            transform: translateY(0) scale(1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f5f5f7; }
-        ::-webkit-scrollbar-thumb { background: #016171; border-radius: 10px; }
-
-        .modal-scrollable-content::-webkit-scrollbar { width: 6px; }
-        .modal-scrollable-content::-webkit-scrollbar-track { background: transparent; }
-        .modal-scrollable-content::-webkit-scrollbar-thumb { background: rgba(1, 97, 113, 0.3); border-radius: 10px; }
-        .modal-scrollable-content::-webkit-scrollbar-thumb:hover { background: rgba(1, 97, 113, 0.6); }
-
-        .tilt-card {
-            transform-style: preserve-3d;
-            transform: perspective(1000px);
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
         }
-        .tilt-card-content {
-            transform: translateZ(40px);
+        ::-webkit-scrollbar-track {
+            background: #f5f5f7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #016171;
+            border-radius: 5px;
         }
 
-        .roadmap-line {
-            background-image: linear-gradient(to bottom, transparent 50%, rgba(1, 97, 113, 0.2) 50%);
-            background-size: 100% 20px;
+        /* Hero Background Gradient */
+        .hero-bg {
+            background: linear-gradient(180deg, #ffffff 0%, #eef5f4 100%);
         }
     </style>
 
@@ -172,59 +133,29 @@
 <body class="bg-brand-offwhite text-gray-800 font-sans antialiased overflow-x-hidden selection:bg-brand-teal selection:text-white">
 
     <div id="lightbox" onclick="closeLightbox()">
-        <i data-lucide="x" class="lightbox-close" onclick="closeLightbox()"></i>
+        <i data-lucide="x" id="lightbox-close"></i>
         <img id="lightbox-img" src="" alt="Zoomed image" onclick="event.stopPropagation()">
     </div>
 
-    <div id="service-modal" onclick="closeServiceModal()">
-        <div class="modal-wrapper relative w-full max-w-2xl bg-white rounded-[30px] md:rounded-[40px] shadow-2xl flex flex-col max-h-[90vh] md:max-h-[85vh] overflow-hidden" onclick="event.stopPropagation()">
-            
-            <button onclick="closeServiceModal()" class="absolute top-4 right-4 md:top-6 md:right-6 z-50 bg-white/90 backdrop-blur-sm text-brand-teal p-3 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.1)] hover:scale-110 hover:rotate-90 transition-all duration-300 border border-gray-100">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-
-            <div class="modal-scrollable-content overflow-y-auto overscroll-contain w-full h-full p-8 pt-16 md:p-14 relative rounded-[30px] md:rounded-[40px]">
-                <div class="absolute -top-10 -right-10 w-64 h-64 bg-brand-peach/20 rounded-full blur-[40px] pointer-events-none z-0"></div>
-                
-                <div id="modal-icon" class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-brand-teal/10 flex items-center justify-center text-brand-teal mb-6 md:mb-8 relative z-10"></div>
-                <h3 id="modal-title" class="font-serif text-2xl md:text-4xl text-gray-800 mb-4 md:mb-6 uppercase relative z-10"></h3>
-                <p id="modal-text" class="text-gray-600 leading-relaxed font-light text-base md:text-lg relative z-10"></p>
-                
-                <button onclick="document.getElementById('roadmap').scrollIntoView(); closeServiceModal();" class="mt-8 md:mt-10 inline-flex items-center gap-3 bg-brand-teal text-white px-6 md:px-8 py-4 rounded-full text-sm font-semibold tracking-widest uppercase hover:bg-brand-teal/90 transition-all hover:shadow-lg hover:-translate-y-1 relative z-10">
-                    ΠΩΣ ΝΑ ΞΕΚΙΝΗΣΟΥΜΕ <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-xl bg-white/60 border-b border-white/20" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-28">
-                <a href="#top" class="flex-shrink-0 group cursor-pointer flex items-center gap-3 md:gap-4">
+    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-md bg-white/70 border-b border-white/20" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <a href="#top" class="flex-shrink-0 group cursor-pointer flex items-center gap-4">
                     <img src="https://github.com/agelmet/NTINOPOULOU/blob/main/logoo.jpg?raw=true" 
                          alt="Logo" 
-                         class="h-16 w-16 md:h-20 md:w-20 lg:h-22 lg:w-22 rounded-full object-cover shadow-lg border-2 border-white transition-transform duration-500 group-hover:scale-105 group-hover:shadow-brand-teal/30">
-                    
-                    <div class="flex flex-col justify-center">
-                        <span class="font-serif font-bold text-base md:text-lg lg:text-xl leading-tight text-brand-teal tracking-wide transition-colors group-hover:text-brand-teal/80">
-                            ΑΡΙΑΔΝΗ Α. ΝΤΙΝΟΠΟΥΛΟΥ
-                        </span>
-                        <span class="text-[10px] md:text-xs tracking-wider text-gray-500 mt-1">
-                            ΨΥΧΟΛΟΓΟΣ MSC -ΣΥΣΤΗΜΙΚΗ ΨΥΧΟΘΕΡΑΠΕΥΤΡΙΑ
-                        </span>
-                    </div>
+                         class="h-16 w-16 rounded-full object-cover shadow-lg border-2 border-white transition-transform duration-500 group-hover:scale-110 group-hover:shadow-brand-teal/30">
                 </a>
 
-                <div class="hidden xl:flex items-center space-x-8">
+                <div class="hidden md:flex items-center space-x-8">
                     <a href="#about" class="text-sm font-medium tracking-widest uppercase text-gray-600 hover:text-brand-teal transition-colors">Η ΨΥΧΟΛΟΓΟΣ</a>
                     <a href="#services" class="text-sm font-medium tracking-widest uppercase text-gray-600 hover:text-brand-teal transition-colors">ΥΠΗΡΕΣΙΕΣ</a>
-                    <a href="#roadmap" class="text-sm font-medium tracking-widest uppercase text-gray-600 hover:text-brand-teal transition-colors">Η ΘΕΡΑΠΕΙΑ</a>
-                    <a href="#contact" class="bg-brand-teal text-white px-8 py-3 rounded-full text-sm font-semibold tracking-widest hover:bg-brand-teal/90 transition-all hover:shadow-lg hover:-translate-y-0.5">
-                        Επικοινωνία
+                    <a href="#contact" class="text-sm font-medium tracking-widest uppercase text-gray-600 hover:text-brand-teal transition-colors">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+                    <a href="#contact" class="bg-brand-teal text-white px-8 py-3 rounded-full text-sm font-semibold tracking-widest uppercase hover:bg-brand-teal/90 transition-all hover:shadow-lg hover:-translate-y-0.5">
+                        ΚΛΕΙΣΕ ΡΑΝΤΕΒΟΥ
                     </a>
                 </div>
 
-                <div class="xl:hidden flex items-center">
+                <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-brand-teal focus:outline-none p-2">
                         <i data-lucide="menu" class="w-8 h-8"></i>
                     </button>
@@ -232,154 +163,100 @@
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden xl:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100 absolute w-full shadow-2xl">
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100 absolute w-full shadow-2xl">
             <div class="px-6 py-8 space-y-6 flex flex-col text-center">
                 <a href="#about" class="mobile-link text-lg font-medium tracking-widest uppercase text-gray-800">Η ΨΥΧΟΛΟΓΟΣ</a>
                 <a href="#services" class="mobile-link text-lg font-medium tracking-widest uppercase text-gray-800">ΥΠΗΡΕΣΙΕΣ</a>
-                <a href="#roadmap" class="mobile-link text-lg font-medium tracking-widest uppercase text-gray-800">Η ΘΕΡΑΠΕΙΑ</a>
-                <a href="#contact" class="mobile-link bg-brand-teal text-white px-6 py-4 rounded-full text-sm font-semibold tracking-widest mx-auto w-full max-w-xs">
-                    Επικοινωνία
+                <a href="#contact" class="mobile-link text-lg font-medium tracking-widest uppercase text-gray-800">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+                <a href="#contact" class="mobile-link bg-brand-teal text-white px-6 py-4 rounded-full text-sm font-semibold tracking-widest uppercase mx-auto w-full max-w-xs">
+                    ΚΛΕΙΣΕ ΡΑΝΤΕΒΟΥ
                 </a>
             </div>
         </div>
     </nav>
 
-    <section id="top" class="relative min-h-[100svh] flex items-center overflow-hidden bg-brand-offwhite lg:pb-0 pb-12">
-        
-        <div class="absolute inset-0 z-0">
-            <img src="https://raw.githubusercontent.com/agelmet/NTINOPOULOU/refs/heads/main/sfdlkjfasd.jpg" 
-                 alt="Background" 
-                 class="w-full h-full object-cover object-[center_top] lg:object-[center_15%]">
+    <section id="top" class="hero-bg min-h-screen relative overflow-hidden flex items-center justify-center pt-20">
+        <svg class="absolute top-10 left-0 w-1/2 h-auto opacity-60 pointer-events-none z-0" viewBox="0 0 500 200" fill="none">
+            <path d="M0 100 C 150 200, 300 0, 500 100" stroke="white" stroke-width="3" fill="none"/>
+        </svg>
+        <svg class="absolute bottom-20 right-0 w-2/3 h-auto opacity-60 pointer-events-none z-0" viewBox="0 0 600 200" fill="none">
+            <path d="M0 100 C 200 0, 400 200, 600 50" stroke="white" stroke-width="4" fill="none"/>
+        </svg>
+
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-peach/40 rounded-full mix-blend-multiply filter blur-[80px] animate-blob z-0"></div>
+        <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-brand-lilac/40 rounded-full mix-blend-multiply filter blur-[80px] animate-blob animation-delay-2000 z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-6 w-full z-10 flex flex-col-reverse lg:flex-row items-center justify-between gap-16">
             
-            <div class="absolute bottom-0 w-full h-[65%] bg-gradient-to-t from-brand-offwhite via-brand-offwhite/95 to-transparent lg:hidden pointer-events-none"></div>
-            
-            <div class="hidden lg:block absolute left-0 w-[65%] h-full bg-gradient-to-r from-brand-offwhite via-brand-offwhite/90 to-transparent pointer-events-none"></div>
-            
-            <div class="absolute inset-0 bg-brand-teal/5 mix-blend-multiply pointer-events-none"></div>
+            <div class="w-full lg:w-1/2 text-center lg:text-left flex flex-col items-center lg:items-start opacity-0 animate-[fadeInUp_1.2s_ease-out_forwards]">
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl uppercase tracking-[0.1em] text-brand-teal leading-[1.1] mb-6">
+                    ΑΡΙΑΔΝΗ-<br>ΑΘΗΝΑ<br>ΝΤΙΝΟΠΟΥΛΟΥ
+                </h1>
+                
+                <h2 class="font-serif italic text-2xl md:text-3xl text-gray-600 mb-8 font-light">
+                    Ειδικευόμενη Συστημική Ψυχοθεραπεύτρια
+                </h2>
+                
+                <div class="flex items-center gap-6 text-sm md:text-base font-medium tracking-widest text-gray-500 uppercase">
+                    <span>MSc ΨΥΧΙΚΗ ΥΓΕΙΑ</span>
+                    <div class="h-6 w-px bg-brand-teal/30"></div>
+                    <span>ΑΘΗΝΑ - ΝΕΑ ΙΩΝΙΑ</span>
+                </div>
+                
+                <div class="mt-12">
+                    <a href="#about" class="group flex items-center gap-4 text-brand-teal font-medium tracking-widest uppercase text-sm hover:opacity-70 transition-opacity">
+                        <div class="w-12 h-px bg-brand-teal transition-all group-hover:w-16"></div>
+                        ΓΝΩΡΙΣΤΕ ΤΗΝ ΨΥΧΟΛΟΓΟ
+                    </a>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative opacity-0 animate-[fadeInUp_1.5s_ease-out_forwards]">
+                <div class="relative w-full max-w-md xl:max-w-lg cursor-pointer" onclick="openLightbox('https://github.com/agelmet/NTINOPOULOU/blob/main/her.jpg?raw=true')">
+                    <div class="absolute inset-0 bg-brand-orange blur-[60px] opacity-50 rounded-full scale-110"></div>
+                    
+                    <div class="relative overflow-hidden rounded-t-[150px] rounded-b-[20px] border-4 border-white/50 shadow-2xl z-10 aspect-[3/4]">
+                        <img src="https://github.com/agelmet/NTINOPOULOU/blob/main/her.jpg?raw=true" 
+                             alt="Αριάδνη-Αθηνά Ντινοπούλου" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-1000">
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="max-w-7xl mx-auto px-6 w-full z-10 flex flex-col relative pt-[45vh] lg:pt-28">
-            
-            <div class="w-full lg:w-3/5 text-center lg:text-left flex flex-col items-center lg:items-start z-10">
+        <a href="#about" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity z-20">
+            <span class="text-xs font-semibold tracking-widest uppercase text-brand-teal">SCROLL DOWN</span>
+            <i data-lucide="arrow-down" class="w-5 h-5 text-brand-teal animate-bounce-slow"></i>
+        </a>
+    </section>
+
+    <section id="about" class="py-32 relative bg-brand-offwhite">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-teal font-semibold tracking-widest uppercase text-sm mb-4 block">ΤΟ ΠΡΟΦΙΛ</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-gray-800">Σχετικά με την Ψυχολόγο</h2>
+                <div class="w-24 h-1 bg-brand-peach mx-auto mt-8 rounded-full"></div>
+            </div>
+
+            <div class="bg-white rounded-[40px] p-10 md:p-16 shadow-xl shadow-brand-teal/5 relative overflow-hidden reveal">
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-brand-lilac/30 rounded-full blur-[40px] pointer-events-none"></div>
                 
-                <div class="opacity-0 animate-[fadeInUp_1s_ease-out_forwards] mb-4 lg:mb-6 bg-brand-teal/5 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none border border-brand-teal/10 lg:border-none px-4 py-2 lg:px-0 lg:py-0 rounded-full lg:rounded-none inline-block">
-                    <p class="text-brand-teal font-serif text-sm lg:text-lg font-medium">
-                        ΣΥΣΤΗΜΙΚΗ ΨΥΧΟΘΕΡΑΠΕΙΑ <span class="text-gray-600 font-light">με επίκεντρο την</span> ΕΞΕΛΙΞΗ ΚΑΙ ΤΗΝ ΑΠΟΔΟΧΗ.
+                <div class="relative z-10 text-lg text-gray-600 leading-relaxed space-y-6 font-light">
+                    <p class="font-medium text-gray-800 text-xl">
+                        Ψυχολόγος με Αρ. Αδείας 2463 | Ειδικευόμενη Συστημική Ψυχοθεραπεύτρια<br>
+                        <span class="text-brand-teal text-base">MSc Ψυχική Υγεία και Ψυχιατρική Παιδιού & Εφήβου, Ιατρική Σχολή Αθηνών</span>
                     </p>
-                </div>
-                
-                <span class="opacity-0 animate-[fadeInUp_1.1s_ease-out_forwards] text-brand-peach font-bold tracking-[0.2em] text-[10px] md:text-sm mb-3 block uppercase drop-shadow-sm">
-                    • ΨΥΧΟΘΕΡΑΠΕΙΑ & ΣΥΜΒΟΥΛΕΥΤΙΚΗ
-                </span>
-                
-                <p class="opacity-0 animate-[fadeInUp_1.1s_ease-out_forwards] font-serif italic text-lg lg:text-2xl text-gray-800 font-light mb-6 lg:mb-8 drop-shadow-sm">
-                    Η αλλαγή δεν περιμένει..ξεκινά από Εσένα
-                </p>
-
-                <p class="opacity-0 animate-[fadeInUp_1.2s_ease-out_forwards] text-gray-600 text-sm lg:text-lg leading-relaxed mb-6 lg:mb-10 max-w-md mx-auto lg:mx-0">
-                    Εδώ δημιουργούμε μαζί έναν χώρο ουσιαστικής σύνδεσης, κατανόησης και αλλαγής. με βάση μια σύγχρονη και εξατομικευμένη θεραπευτική προσέγγιση
-                </p>
-
-                <div class="opacity-0 animate-[fadeInUp_1.4s_ease-out_forwards] mb-8 lg:mb-12 flex flex-col items-center lg:items-start">
-                    <h1 class="font-serif text-3xl sm:text-4xl lg:text-6xl tracking-[0.05em] text-brand-teal leading-[1.15] mb-4 drop-shadow-md">
-                        ΑΡΙΑΔΝΗ Α.<br>ΝΤΙΝΟΠΟΥΛΟΥ
-                    </h1>
                     
-                    <div class="flex flex-col gap-1.5 lg:border-l-2 lg:border-brand-peach lg:pl-4 text-center lg:text-left">
-                        <span class="font-medium text-gray-800 text-base lg:text-xl">Ψυχολόγος & Συστημική Ψυχοθεραπεύτρια</span>
-                        <span class="text-xs lg:text-sm tracking-widest text-gray-500">MSc Ιατρική Σχολή Αθηνών</span>
-                    </div>
-                </div>
-
-                <div class="opacity-0 animate-[fadeInUp_1.5s_ease-out_forwards] flex flex-col sm:flex-row w-full sm:w-auto gap-4 justify-center lg:justify-start">
-                    <a href="#roadmap" class="bg-brand-teal text-white px-8 py-4 rounded-full text-sm font-semibold tracking-widest hover:bg-brand-teal/90 transition-all shadow-lg hover:-translate-y-1 text-center">
-                        Κλείστε Ραντεβού
-                    </a>
-                    <a href="#about" class="bg-white border-2 border-brand-teal/20 text-brand-teal px-8 py-4 rounded-full text-sm font-semibold tracking-widest hover:border-brand-teal transition-all shadow-sm hover:shadow-md hover:-translate-y-1 text-center">
-                        Γνωρίστε με
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="trust" class="relative z-20 -mt-8 lg:-mt-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="bg-white/90 backdrop-blur-2xl border border-white rounded-[40px] shadow-[0_20px_60px_-15px_rgba(1,97,113,0.1)] p-8 md:p-12">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <p>Η Αριάδνη-Αθηνά Ντινοπούλου είναι Ψυχολόγος απόφοιτη του Πάντειου Πανεπιστημίου και κατέχει άδεια ασκήσεως επαγγέλματος. Έχει ολοκληρώσει Μεταπτυχιακές Σπουδές (MSc) στην Ψυχική Υγεία και Ψυχιατρική Παιδιού και Εφήβου στην Ιατρική Σχολή Αθηνών (Νοσοκομείο Παίδων «Η Αγία Σοφία) και ειδικεύεται στη Συστημική-Οικογενειακή Ψυχοθεραπευτική Προσέγγιση.</p>
                     
-                    <div class="reveal group">
-                        <div class="w-14 h-14 rounded-2xl bg-brand-offwhite flex items-center justify-center mb-6 group-hover:-translate-y-2 group-hover:bg-brand-peach transition-all duration-300">
-                            <i data-lucide="graduation-cap" class="w-7 h-7 text-brand-teal"></i>
-                        </div>
-                        <h4 class="font-serif text-lg font-bold text-gray-800 mb-3 uppercase tracking-wide">ΕΞΕΙΔΙΚΕΥΜΕΝΗ ΕΚΠΑΙΔΕΥΣΗ</h4>
-                        <p class="text-gray-500 text-sm leading-relaxed">Κάτοχος μεταπτυχιακού (MSc) της Ιατρικής Σχολής Αθηνών, με 4ετή εξειδίκευση στη Συστημική Ψυχοθεραπεία. Απόφοιτη Παντείου Πανεπιστημίου με κατάρτιση στις νεότερες θεραπείες (Mindfulness CBT, DBT, CFT, ACT).</p>
-                    </div>
-
-                    <div class="reveal group" style="transition-delay: 100ms;">
-                        <div class="w-14 h-14 rounded-2xl bg-brand-offwhite flex items-center justify-center mb-6 group-hover:-translate-y-2 group-hover:bg-brand-lilac transition-all duration-300">
-                            <i data-lucide="brain-circuit" class="w-7 h-7 text-brand-teal"></i>
-                        </div>
-                        <h4 class="font-serif text-lg font-bold text-gray-800 mb-3 uppercase tracking-wide">ΠΟΛΥΔΙΑΣΤΑΤΗ ΕΜΠΕΙΡΙΑ</h4>
-                        <p class="text-gray-500 text-sm leading-relaxed">Εμπειρία στη διαχείριση νευροαναπτυξιακών διαταραχών, ρύθμιση συναισθημάτων (άγχος, πένθος, θυμός), διαχείριση διαταραχών εικόνας του εαυτού, και προβλήματα στις διαπροσωπικές σχέσεις.</p>
-                    </div>
-
-                    <div class="reveal group" style="transition-delay: 200ms;">
-                        <div class="w-14 h-14 rounded-2xl bg-brand-offwhite flex items-center justify-center mb-6 group-hover:-translate-y-2 group-hover:bg-brand-teal group-hover:text-white transition-all duration-300 text-brand-teal">
-                            <i data-lucide="network" class="w-7 h-7"></i>
-                        </div>
-                        <h4 class="font-serif text-lg font-bold text-gray-800 mb-3 uppercase tracking-wide">ΣΥΣΤΗΜΙΚΗ ΠΡΟΣΕΓΓΙΣΗ</h4>
-                        <p class="text-gray-500 text-sm leading-relaxed">Ολιστική κατανόηση των δυσκολιών τόσο ενδοατομικά, όσο και με βάση τα διαπροσωπικά δίκτυα και τα συστήματα ζωής του θεραπευόμενου.</p>
-                    </div>
-
+                    <p>Στις εξειδικεύσεις της ανήκουν επίσης οι νεότερες θεραπείες της Γνωσιακής-Συμπεριφορικής Προσέγγισης όπως η Ενσυνειδητότητα (Μindfulness CBT), θεραπεία διαλεκτικής συμπεριφοράς (DBT), θεραπεία εστιασμένη στην συμπόνια (CFT), θεραπεία αποδοχής και δέσμευσης (ACT), από το ΕΚ.Ι.ΣΥ.Π, Εκπαιδευτικό Ινστιτούτο Συνθετικής Προσέγγισης.</p>
+                    
+                    <p>Έχει εκπαιδευτεί σε ψυχομετρικά εργαλεία αξιολόγησης ψυχικής υγείας και νοητικού δυναμικού όπως η Κλίµακα Νοημοσύνης Wechsler για Παιδιά WISC-V (Wechsler Intelligence Scale for Children -Fifth Edition).</p>
+                    
+                    <p>Εργάζεται ψυχοθεραπευτικά με παιδιά, εφήβους & ενήλικες, ζευγάρια και οικογένειες.</p>
+                    
+                    <p>Η θεματολογία που καλύπτει η κλινική της εμπειρία περιλαμβάνει την παρέμβαση σε νευροαναπτυξιακές διαταραχές παιδικής και εφηβικής ηλικίας (ΔΕΠ-Υ, ΔΑΔ κα.), τη διαχείριση κρίσεων, την αντιμετώπιση δυσκολιών στην ρύθμιση συναισθημάτων (όπως άγχος, πένθος, θυμός, φοβίες), τις δυσκολίες προσαρμογής, νευροαναπτυξιακές διαταραχές, τη διαχείριση διαταραχών εικόνας του εαυτού (όπως χαμηλή αυτοεκτίμηση, αναξιοπιστία), τις δυσκολίες στην επίτευξη στόχων (π.χ. αναβλητικότητα), προβλήματα στις διαπροσωπικές σχέσεις, την ανάπτυξη της ψυχολογικής ευελιξίας και την ενίσχυση της ψυχικής ανθεκτικότητας. Συνολικά, προσεγγίζει το θεραπευόμενο και τις ψυχολογικές δυσκολίες του τόσο ενδοατομικά όσο και στη βάση συγκεκριμένων πλαισίων και διαπροσωπικών σχέσεων που αναπτύσσει στην διάρκεια της ζωής του σε διαφορετικά πλαίσια-συστήματα (π.χ οικογενειακές/κοινωνικές σχέσεις κ.α.).</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="py-32 relative bg-brand-offwhite overflow-hidden">
-        <div class="absolute top-0 right-0 w-1/3 h-full bg-white/50 skew-x-12 translate-x-32 z-0 pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="flex flex-col lg:flex-row gap-16 items-start lg:items-center">
-                
-                <div class="w-full lg:w-1/2 flex flex-col space-y-10">
-                    <div class="order-1 reveal">
-                        <h2 class="font-serif text-4xl md:text-5xl text-gray-800 mb-8">Γνωρίστε την Ψυχολόγο</h2>
-                        <div class="p-8 bg-white rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.03)] border-l-4 border-brand-teal relative overflow-hidden">
-                            <div class="absolute top-0 right-0 w-32 h-32 bg-brand-peach/20 rounded-full blur-[30px] -translate-y-1/2 translate-x-1/2"></div>
-                            <p class="text-lg text-gray-700 leading-relaxed font-medium relative z-10">
-                                Αδειούχος Ψυχολόγος <span class="text-brand-teal font-semibold">(Αρ. Αδείας 2463)</span> και <span class="text-brand-teal font-semibold">Συστημική Ψυχοθεραπεύτρια</span>, με Μεταπτυχιακές Σπουδές (MSc) στην Ψυχική Υγεία και την Ψυχιατρική Παιδιού & Εφήβου από την <span class="text-brand-teal font-semibold">Ιατρική Σχολή του Πανεπιστημίου Αθηνών</span>.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="order-2 lg:hidden w-full px-4 py-4 reveal">
-                        <img src="https://github.com/agelmet/NTINOPOULOU/blob/main/122121.jpg?raw=true" 
-                             alt="Portrait" 
-                             class="w-full h-auto rounded-[30px] shadow-2xl animate-float cursor-pointer object-cover"
-                             onclick="openLightbox(this.src)">
-                    </div>
-
-                    <div class="order-3 text-gray-600 font-light text-lg space-y-6 leading-relaxed reveal">
-                        <p>Η Αριάδνη-Αθηνά Ντινοπούλου είναι απόφοιτη του Πάντειου Πανεπιστημίου. Στις εξειδικεύσεις της ανήκουν επίσης οι νεότερες θεραπείες της Γνωσιακής-Συμπεριφορικής Προσέγγισης όπως η Ενσυνειδητότητα (Μindfulness CBT), θεραπεία διαλεκτικής συμπεριφοράς (DBT), θεραπεία εστιασμένη στην συμπόνια (CFT), θεραπεία αποδοχής και δέσμευσης (ACT), από το ΕΚ.Ι.ΣΥ.Π.</p>
-                        
-                        <p>Έχει εκπαιδευτεί σε ψυχομετρικά εργαλεία αξιολόγησης ψυχικής υγείας και νοητικού δυναμικού όπως η Κλίµακα Νοημοσύνης Wechsler για Παιδιά (WISC-V).</p>
-                        
-                        <p>Εργάζεται ψυχοθεραπευτικά με παιδιά, εφήβους, ενήλικες, ζευγάρια και οικογένειες. Η κλινική της εμπειρία περιλαμβάνει την παρέμβαση σε νευροαναπτυξιακές διαταραχές (ΔΕΠ-Υ, ΔΑΔ), διαχείριση κρίσεων, ρύθμιση συναισθημάτων (άγχος, πένθος, θυμός), διαχείριση διαταραχών εικόνας του εαυτού, και προβλήματα στις διαπροσωπικές σχέσεις.</p>
-                        
-                        <p>Προσεγγίζει το θεραπευόμενο και τις ψυχολογικές δυσκολίες του τόσο ενδοατομικά όσο και στη βάση των διαπροσωπικών σχέσεων που αναπτύσσει στα διαφορετικά πλαίσια της ζωής του.</p>
-                    </div>
-                </div>
-
-                <div class="hidden lg:flex w-1/2 justify-center lg:justify-end reveal relative lg:pl-10">
-                    <div class="absolute inset-0 bg-brand-teal/10 blur-[80px] rounded-full scale-110"></div>
-                    <img src="https://github.com/agelmet/NTINOPOULOU/blob/main/122121.jpg?raw=true" 
-                         alt="Portrait" 
-                         class="w-full max-w-[550px] rounded-[40px] shadow-[0_30px_60px_-15px_rgba(1,97,113,0.3)] animate-float cursor-pointer object-cover aspect-[4/5] relative z-10 border-4 border-white"
-                         onclick="openLightbox(this.src)">
-                </div>
-
             </div>
         </div>
     </section>
@@ -388,170 +265,88 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-24 reveal">
                 <span class="text-brand-teal font-semibold tracking-widest uppercase text-sm mb-4 block">ΘΕΡΑΠΕΥΤΙΚΕΣ ΠΡΟΣΕΓΓΙΣΕΙΣ</span>
-                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-gray-800">Υπηρεσίες Ψυχοθεραπείας</h2>
+                <h2 class="font-serif text-4xl md:text-5xl text-gray-800">Υπηρεσίες Ψυχοθεραπείας</h2>
                 <div class="w-24 h-1 bg-brand-peach mx-auto mt-8 rounded-full"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <div class="tilt-card reveal cursor-pointer group" onclick="openService('adults')" data-tilt>
-                    <div class="tilt-card-content h-full bg-brand-offwhite rounded-[30px] p-10 border border-transparent hover:border-brand-teal/20 hover:bg-white hover:shadow-[0_20px_50px_-10px_rgba(1,97,113,0.15)] transition-all duration-500 relative overflow-hidden">
-                        <div class="absolute -right-6 -top-6 w-32 h-32 bg-brand-teal/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-                        <i data-lucide="user" class="w-12 h-12 text-brand-teal mb-8 relative z-10"></i>
-                        <h3 class="font-serif text-2xl text-gray-800 mb-4 relative z-10 uppercase">ΑΤΟΜΙΚΗ ΘΕΡΑΠΕΙΑ ΕΝΗΛΙΚΩΝ</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed mb-8 relative z-10 line-clamp-3">
-                            Η ψυχοθεραπεία ενηλίκων απευθύνεται τόσο σε άτομα που επιθυμούν προσωπική ανάπτυξη όσο και σε όσους αντιμετωπίζουν ψυχικές διαταραχές...
-                        </p>
-                        <span class="text-brand-teal text-xs font-bold tracking-widest uppercase flex items-center gap-2 group-hover:gap-4 transition-all relative z-10">
-                            ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </span>
+                
+                <div class="group relative bg-brand-offwhite rounded-[30px] p-10 hover:bg-brand-teal transition-colors duration-500 reveal cursor-pointer" onclick="document.getElementById('contact').scrollIntoView();">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                        <i data-lucide="user" class="w-20 h-20 text-brand-teal group-hover:text-white"></i>
                     </div>
+                    <h3 class="font-serif text-2xl text-gray-800 group-hover:text-white mb-6 relative z-10 transition-colors duration-500">ΑΤΟΜΙΚΗ<br>ΘΕΡΑΠΕΙΑ<br>ΕΝΗΛΙΚΩΝ</h3>
+                    <p class="text-gray-600 group-hover:text-brand-offwhite/90 text-sm leading-relaxed mb-8 relative z-10 transition-colors duration-500 line-clamp-6">
+                        Η ψυχοθεραπεία ενηλίκων απευθύνεται τόσο σε άτομα που επιθυμούν προσωπική ανάπτυξη όσο και σε όσους αντιμετωπίζουν ψυχικές διαταραχές ή δυσκολίες στην καθημερινότητα. Άγχος, κατάθλιψη, διαταραχές προσωπικότητας, τραυματικές εμπειρίες, αλλά και ζητήματα στις σχέσεις, στην εργασία ή στην οικογένεια, αποτελούν συχνά αιτήματα. Στη συστημική προσέγγιση διερευνώνται οι επιρροές των σημαντικών συστημάτων ζωής και αναζητούνται νέοι τρόποι κατανόησης και διαχείρισης. Στόχος είναι η ανακούφιση από τα συμπτώματα, η βελτίωση της ψυχικής ισορροπίας και η ενίσχυση της ποιότητας ζωής.
+                    </p>
+                    <button class="flex items-center gap-3 text-brand-teal group-hover:text-white font-semibold tracking-wider text-sm uppercase transition-colors relative z-10">
+                        ΚΛΕΙΣΕ ΣΥΝΕΔΡΙΑ <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                    </button>
                 </div>
 
-                <div class="tilt-card reveal cursor-pointer group" onclick="openService('teens')" style="transition-delay: 100ms;" data-tilt>
-                    <div class="tilt-card-content h-full bg-brand-offwhite rounded-[30px] p-10 border border-transparent hover:border-brand-teal/20 hover:bg-white hover:shadow-[0_20px_50px_-10px_rgba(1,97,113,0.15)] transition-all duration-500 relative overflow-hidden">
-                        <div class="absolute -right-6 -top-6 w-32 h-32 bg-brand-orange/10 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-                        <i data-lucide="smile" class="w-12 h-12 text-brand-teal mb-8 relative z-10"></i>
-                        <h3 class="font-serif text-2xl text-gray-800 mb-4 relative z-10 uppercase">ΑΤΟΜΙΚΗ ΘΕΡΑΠΕΙΑ ΕΦΗΒΩΝ</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed mb-8 relative z-10 line-clamp-3">
-                            Η εφηβεία συνοδεύεται από έντονες συναισθηματικές και κοινωνικές προκλήσεις, αλλά και από την εμφάνιση ψυχικών δυσκολιών...
-                        </p>
-                        <span class="text-brand-teal text-xs font-bold tracking-widest uppercase flex items-center gap-2 group-hover:gap-4 transition-all relative z-10">
-                            ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </span>
+                <div class="group relative bg-brand-offwhite rounded-[30px] p-10 hover:bg-brand-teal transition-colors duration-500 reveal" style="transition-delay: 100ms;" onclick="document.getElementById('contact').scrollIntoView();">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                        <i data-lucide="smile" class="w-20 h-20 text-brand-teal group-hover:text-white"></i>
                     </div>
+                    <h3 class="font-serif text-2xl text-gray-800 group-hover:text-white mb-6 relative z-10 transition-colors duration-500">ΑΤΟΜΙΚΗ<br>ΘΕΡΑΠΕΙΑ<br>ΕΦΗΒΩΝ</h3>
+                    <p class="text-gray-600 group-hover:text-brand-offwhite/90 text-sm leading-relaxed mb-8 relative z-10 transition-colors duration-500 line-clamp-6">
+                        Η εφηβεία συνοδεύεται από έντονες συναισθηματικές και κοινωνικές προκλήσεις, αλλά και από την εμφάνιση ψυχικών δυσκολιών όπως άγχος, καταθλιπτική διάθεση, διαταραχές συμπεριφοράς ή προβλήματα στις σχέσεις με οικογένεια και συνομηλίκους. Η ψυχοθεραπεία παρέχει έναν ασφαλή χώρο για τον έφηβο ώστε να εκφράσει ελεύθερα σκέψεις και συναισθήματα, να επεξεργαστεί δυσκολίες και να καλλιεργήσει νέους τρόπους διαχείρισης. Στόχος είναι η ενδυνάμωση της αυτοεκτίμησης, η στήριξη της ταυτότητας και η ενίσχυση της ψυχικής ανθεκτικότητας.
+                    </p>
+                    <button class="flex items-center gap-3 text-brand-teal group-hover:text-white font-semibold tracking-wider text-sm uppercase transition-colors relative z-10">
+                        ΚΛΕΙΣΕ ΣΥΝΕΔΡΙΑ <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                    </button>
                 </div>
 
-                <div class="tilt-card reveal cursor-pointer group" onclick="openService('kids')" style="transition-delay: 200ms;" data-tilt>
-                    <div class="tilt-card-content h-full bg-brand-offwhite rounded-[30px] p-10 border border-transparent hover:border-brand-teal/20 hover:bg-white hover:shadow-[0_20px_50px_-10px_rgba(1,97,113,0.15)] transition-all duration-500 relative overflow-hidden">
-                        <div class="absolute -right-6 -top-6 w-32 h-32 bg-brand-lilac/20 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-                        <i data-lucide="puzzle" class="w-12 h-12 text-brand-teal mb-8 relative z-10"></i>
-                        <h3 class="font-serif text-2xl text-gray-800 mb-4 relative z-10 uppercase">ΑΤΟΜΙΚΗ ΘΕΡΑΠΕΙΑ ΠΑΙΔΙΩΝ</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed mb-8 relative z-10 line-clamp-3">
-                            Η ψυχοθεραπεία παιδιών στοχεύει στην υποστήριξη της ανάπτυξης και της ψυχικής ευεξίας, όταν το παιδί δυσκολεύεται συναισθηματικά...
-                        </p>
-                        <span class="text-brand-teal text-xs font-bold tracking-widest uppercase flex items-center gap-2 group-hover:gap-4 transition-all relative z-10">
-                            ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </span>
+                <div class="group relative bg-brand-offwhite rounded-[30px] p-10 hover:bg-brand-teal transition-colors duration-500 reveal" style="transition-delay: 200ms;" onclick="document.getElementById('contact').scrollIntoView();">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                        <i data-lucide="puzzle" class="w-20 h-20 text-brand-teal group-hover:text-white"></i>
                     </div>
+                    <h3 class="font-serif text-2xl text-gray-800 group-hover:text-white mb-6 relative z-10 transition-colors duration-500">ΑΤΟΜΙΚΗ<br>ΘΕΡΑΠΕΙΑ<br>ΠΑΙΔΙΩΝ</h3>
+                    <p class="text-gray-600 group-hover:text-brand-offwhite/90 text-sm leading-relaxed mb-8 relative z-10 transition-colors duration-500 line-clamp-6">
+                        Η ψυχοθεραπεία παιδιών στοχεύει στην υποστήριξη της ανάπτυξης και της ψυχικής ευεξίας, όταν το παιδί δυσκολεύεται συναισθηματικά ή συμπεριφορικά. Απευθύνεται σε παιδιά με διαταραχές του φάσματος του αυτισμού, ΔΕΠ-Υ, μαθησιακές δυσκολίες, καθώς και σε όσα βιώνουν άγχος, φόβους, χαμηλή αυτοεκτίμηση ή δυσκολίες στις σχέσεις με συνομηλίκους και οικογένεια. Μέσα από παιχνίδι, δημιουργικές δραστηριότητες και ασφαλή επικοινωνία, το παιδί μαθαίνει να εκφράζει συναισθήματα και ανάγκες, ενώ ενισχύεται η αυτοπεποίθηση και η ικανότητα προσαρμογής του.
+                    </p>
+                    <button class="flex items-center gap-3 text-brand-teal group-hover:text-white font-semibold tracking-wider text-sm uppercase transition-colors relative z-10">
+                        ΚΛΕΙΣΕ ΣΥΝΕΔΡΙΑ <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                    </button>
                 </div>
 
-                <div class="tilt-card reveal cursor-pointer group" onclick="openService('parents')" data-tilt>
-                    <div class="tilt-card-content h-full bg-brand-offwhite rounded-[30px] p-10 border border-transparent hover:border-brand-teal/20 hover:bg-white hover:shadow-[0_20px_50px_-10px_rgba(1,97,113,0.15)] transition-all duration-500 relative overflow-hidden">
-                        <div class="absolute -right-6 -top-6 w-32 h-32 bg-brand-peach/20 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-                        <i data-lucide="heart-handshake" class="w-12 h-12 text-brand-teal mb-8 relative z-10"></i>
-                        <h3 class="font-serif text-2xl text-gray-800 mb-4 relative z-10 uppercase">ΣΥΜΒΟΥΛΕΥΤΙΚΗ ΓΟΝΕΩΝ</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed mb-8 relative z-10 line-clamp-3">
-                            Απευθύνεται σε μητέρες και πατέρες που επιθυμούν να κατανοήσουν καλύτερα τις ανάγκες των παιδιών τους και να ενδυναμώσουν τον γονεϊκό ρόλο...
-                        </p>
-                        <span class="text-brand-teal text-xs font-bold tracking-widest uppercase flex items-center gap-2 group-hover:gap-4 transition-all relative z-10">
-                            ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </span>
+                <div class="group relative bg-brand-offwhite rounded-[30px] p-10 hover:bg-brand-teal transition-colors duration-500 reveal" onclick="document.getElementById('contact').scrollIntoView();">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                        <i data-lucide="heart-handshake" class="w-20 h-20 text-brand-teal group-hover:text-white"></i>
                     </div>
+                    <h3 class="font-serif text-2xl text-gray-800 group-hover:text-white mb-6 relative z-10 transition-colors duration-500">ΣΥΜΒΟΥΛΕΥΤΙΚΗ<br>ΓΟΝΕΩΝ<br>&nbsp;</h3>
+                    <p class="text-gray-600 group-hover:text-brand-offwhite/90 text-sm leading-relaxed mb-8 relative z-10 transition-colors duration-500 line-clamp-6">
+                        Η συμβουλευτική γονέων απευθύνεται σε μητέρες και πατέρες που επιθυμούν να κατανοήσουν καλύτερα τις ανάγκες των παιδιών τους και να ενδυναμώσουν τον γονεϊκό τους ρόλο. Συζητούνται δυσκολίες που σχετίζονται με την ανάπτυξη, τη συμπεριφορά, την επικοινωνία ή τη διαχείριση ορίων, αλλά και ζητήματα όπως το διαζύγιο ή αλλαγές στο οικογενειακό πλαίσιο. Στόχος είναι η ενίσχυση της γονεϊκής επάρκειας, η βελτίωση της σχέσης με το παιδί και η δημιουργία ενός πιο ασφαλούς και υποστηρικτικού περιβάλλοντος.
+                    </p>
+                    <button class="flex items-center gap-3 text-brand-teal group-hover:text-white font-semibold tracking-wider text-sm uppercase transition-colors relative z-10">
+                        ΚΛΕΙΣΕ ΣΥΝΕΔΡΙΑ <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                    </button>
                 </div>
 
-                <div class="tilt-card reveal cursor-pointer group" onclick="openService('couples')" style="transition-delay: 100ms;" data-tilt>
-                    <div class="tilt-card-content h-full bg-brand-offwhite rounded-[30px] p-10 border border-transparent hover:border-brand-teal/20 hover:bg-white hover:shadow-[0_20px_50px_-10px_rgba(1,97,113,0.15)] transition-all duration-500 relative overflow-hidden">
-                        <div class="absolute -right-6 -top-6 w-32 h-32 bg-brand-teal/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-                        <i data-lucide="users" class="w-12 h-12 text-brand-teal mb-8 relative z-10"></i>
-                        <h3 class="font-serif text-2xl text-gray-800 mb-4 relative z-10 uppercase">ΣΥΜΒΟΥΛΕΥΤΙΚΗ ΖΕΥΓΟΥΣ</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed mb-8 relative z-10 line-clamp-3">
-                            Αφορά ζευγάρια που επιθυμούν να βελτιώσουν τη σχέση τους, να διαχειριστούν συγκρούσεις ή να αντιμετωπίσουν κρίσιμες καταστάσεις...
-                        </p>
-                        <span class="text-brand-teal text-xs font-bold tracking-widest uppercase flex items-center gap-2 group-hover:gap-4 transition-all relative z-10">
-                            ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </span>
+                <div class="group relative bg-brand-offwhite rounded-[30px] p-10 hover:bg-brand-teal transition-colors duration-500 reveal" style="transition-delay: 100ms;" onclick="document.getElementById('contact').scrollIntoView();">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                        <i data-lucide="users" class="w-20 h-20 text-brand-teal group-hover:text-white"></i>
                     </div>
+                    <h3 class="font-serif text-2xl text-gray-800 group-hover:text-white mb-6 relative z-10 transition-colors duration-500">ΣΥΜΒΟΥΛΕΥΤΙΚΗ<br>ΖΕΥΓΟΥΣ<br>&nbsp;</h3>
+                    <p class="text-gray-600 group-hover:text-brand-offwhite/90 text-sm leading-relaxed mb-8 relative z-10 transition-colors duration-500 line-clamp-6">
+                        Η συμβουλευτική ζεύγους αφορά ζευγάρια που επιθυμούν να βελτιώσουν τη σχέση τους, να διαχειριστούν συγκρούσεις ή να αντιμετωπίσουν κρίσιμες καταστάσεις όπως απιστία, προβλήματα επικοινωνίας, σεξουαλικές δυσκολίες ή μεταβατικές φάσεις ζωής (π.χ. γονεϊκότητα). Η συστημική προσέγγιση βοηθά τους συντρόφους να κατανοήσουν τα μοτίβα που επηρεάζουν τη σχέση τους και να αναπτύξουν νέους τρόπους σύνδεσης. Στόχος είναι η ενίσχυση της αμοιβαίας κατανόησης, η βελτίωση της επικοινωνίας και η ανανέωση της συντροφικότητας.
+                    </p>
+                    <button class="flex items-center gap-3 text-brand-teal group-hover:text-white font-semibold tracking-wider text-sm uppercase transition-colors relative z-10">
+                        ΚΛΕΙΣΕ ΣΥΝΕΔΡΙΑ <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                    </button>
                 </div>
 
-                <div class="tilt-card reveal cursor-pointer group" onclick="openService('family')" style="transition-delay: 200ms;" data-tilt>
-                    <div class="tilt-card-content h-full bg-brand-offwhite rounded-[30px] p-10 border border-transparent hover:border-brand-teal/20 hover:bg-white hover:shadow-[0_20px_50px_-10px_rgba(1,97,113,0.15)] transition-all duration-500 relative overflow-hidden">
-                        <div class="absolute -right-6 -top-6 w-32 h-32 bg-brand-orange/10 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-                        <i data-lucide="network" class="w-12 h-12 text-brand-teal mb-8 relative z-10"></i>
-                        <h3 class="font-serif text-2xl text-gray-800 mb-4 relative z-10 uppercase">ΟΙΚΟΓΕΝΕΙΑΚΗ ΘΕΡΑΠΕΙΑ</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed mb-8 relative z-10 line-clamp-3">
-                            Προσφέρει έναν χώρο όπου όλα τα μέλη της οικογένειας μπορούν να ακουστούν και να επεξεργαστούν τις δυσκολίες που αντιμετωπίζουν...
-                        </p>
-                        <span class="text-brand-teal text-xs font-bold tracking-widest uppercase flex items-center gap-2 group-hover:gap-4 transition-all relative z-10">
-                            ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </span>
+                <div class="group relative bg-brand-offwhite rounded-[30px] p-10 hover:bg-brand-teal transition-colors duration-500 reveal" style="transition-delay: 200ms;" onclick="document.getElementById('contact').scrollIntoView();">
+                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                        <i data-lucide="network" class="w-20 h-20 text-brand-teal group-hover:text-white"></i>
                     </div>
-                </div>
-
-                <div class="tilt-card reveal cursor-pointer group" onclick="openService('online')" data-tilt>
-                    <div class="tilt-card-content h-full bg-brand-offwhite rounded-[30px] p-10 border border-transparent hover:border-brand-teal/20 hover:bg-white hover:shadow-[0_20px_50px_-10px_rgba(1,97,113,0.15)] transition-all duration-500 relative overflow-hidden">
-                        <div class="absolute -right-6 -top-6 w-32 h-32 bg-brand-teal/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-                        <i data-lucide="video" class="w-12 h-12 text-brand-teal mb-8 relative z-10"></i>
-                        <h3 class="font-serif text-2xl text-gray-800 mb-4 relative z-10 uppercase">ONLINE ΨΥΧΟΘΕΡΑΠΕΙΑ</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed mb-8 relative z-10 line-clamp-3">
-                            Η θεραπευτική σχέση χωρίς γεωγραφικούς περιορισμούς. Συνεδρίες μέσω ασφαλούς πλατφόρμας βιντεοκλήσης...
-                        </p>
-                        <span class="text-brand-teal text-xs font-bold tracking-widest uppercase flex items-center gap-2 group-hover:gap-4 transition-all relative z-10">
-                            ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="roadmap" class="py-32 bg-brand-offwhite relative overflow-hidden">
-        <div class="absolute top-1/4 -left-32 w-96 h-96 bg-brand-lilac/30 rounded-full mix-blend-multiply filter blur-[80px] z-0"></div>
-        <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-brand-peach/30 rounded-full mix-blend-multiply filter blur-[80px] z-0"></div>
-
-        <div class="max-w-6xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-24 reveal">
-                <span class="text-brand-teal font-semibold tracking-widest uppercase text-sm mb-4 block">ΤΟ ΤΑΞΙΔΙ ΤΗΣ ΘΕΡΑΠΕΙΑΣ</span>
-                <h2 class="font-serif text-4xl md:text-5xl text-gray-800 uppercase">ΠΩΣ ΜΠΟΡΟΥΜΕ ΝΑ ΞΕΚΙΝΗΣΟΥΜΕ</h2>
-                <div class="w-24 h-1 bg-brand-teal mx-auto mt-8 rounded-full"></div>
-            </div>
-
-            <div class="relative">
-                <div class="absolute left-[27px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-px roadmap-line z-0"></div>
-
-                <div class="space-y-16">
-                    <div class="relative flex flex-col md:flex-row items-center justify-between group reveal">
-                        <div class="w-full md:w-5/12 order-2 md:order-1 text-left md:text-right pl-20 md:pl-0 md:pr-16">
-                            <h3 class="font-serif text-2xl text-brand-teal mb-3 uppercase">ΕΠΙΚΟΙΝΩΝΙΑ</h3>
-                            <p class="text-gray-600 leading-relaxed font-light">Πρώτη επαφή για τον προγραμματισμό της δωρεάν συνεδρίας γνωριμίας και τη συζήτηση των αρχικών σας αιτημάτων.</p>
-                        </div>
-                        <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-14 h-14 rounded-full bg-white border-[3px] border-brand-teal shadow-[0_0_30px_rgba(1,97,113,0.2)] flex items-center justify-center z-10 group-hover:scale-110 group-hover:bg-brand-teal group-hover:text-white transition-all duration-500 cursor-default text-brand-teal">
-                            <span class="text-xl font-bold font-serif">1</span>
-                        </div>
-                        <div class="hidden md:block w-5/12 order-3"></div>
-                    </div>
-
-                    <div class="relative flex flex-col md:flex-row items-center justify-between group reveal" style="transition-delay: 100ms;">
-                        <div class="hidden md:block w-5/12 order-1"></div>
-                        <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-14 h-14 rounded-full bg-white border-[3px] border-brand-peach shadow-[0_0_30px_rgba(245,212,191,0.5)] flex items-center justify-center z-10 group-hover:scale-110 group-hover:bg-brand-peach group-hover:text-white transition-all duration-500 cursor-default text-brand-peach">
-                            <span class="text-xl font-bold font-serif">2</span>
-                        </div>
-                        <div class="w-full md:w-5/12 order-2 md:order-3 text-left pl-20 md:pl-16">
-                            <h3 class="font-serif text-2xl text-brand-peach mb-3 uppercase">ΑΞΙΟΛΟΓΗΣΗ</h3>
-                            <p class="text-gray-600 leading-relaxed font-light">Κατανόηση των δυσκολιών σε ένα ασφαλές πλαίσιο και, όπου απαιτείται, χρήση σταθμισμένων ψυχομετρικών εργαλείων (π.χ. WISC-V).</p>
-                        </div>
-                    </div>
-
-                    <div class="relative flex flex-col md:flex-row items-center justify-between group reveal" style="transition-delay: 200ms;">
-                        <div class="w-full md:w-5/12 order-2 md:order-1 text-left md:text-right pl-20 md:pl-0 md:pr-16">
-                            <h3 class="font-serif text-2xl text-brand-orange mb-3 uppercase">ΣΤΟΧΟΘΕΣΙΑ</h3>
-                            <p class="text-gray-600 leading-relaxed font-light">Σχεδιασμός εξατομικευμένου πλάνου συνδυάζοντας τη Συστημική προσέγγιση με νεότερες μεθόδους της CBT (Mindfulness, DBT, ACT, CFT).</p>
-                        </div>
-                        <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-14 h-14 rounded-full bg-white border-[3px] border-brand-orange shadow-[0_0_30px_rgba(254,218,180,0.5)] flex items-center justify-center z-10 group-hover:scale-110 group-hover:bg-brand-orange group-hover:text-white transition-all duration-500 cursor-default text-brand-orange">
-                            <span class="text-xl font-bold font-serif">3</span>
-                        </div>
-                        <div class="hidden md:block w-5/12 order-3"></div>
-                    </div>
-
-                    <div class="relative flex flex-col md:flex-row items-center justify-between group reveal" style="transition-delay: 300ms;">
-                        <div class="hidden md:block w-5/12 order-1"></div>
-                        <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-14 h-14 rounded-full bg-white border-[3px] border-brand-lilac shadow-[0_0_30px_rgba(228,207,232,0.5)] flex items-center justify-center z-10 group-hover:scale-110 group-hover:bg-brand-lilac group-hover:text-white transition-all duration-500 cursor-default text-brand-lilac">
-                            <span class="text-xl font-bold font-serif">4</span>
-                        </div>
-                        <div class="w-full md:w-5/12 order-2 md:order-3 text-left pl-20 md:pl-16">
-                            <h3 class="font-serif text-2xl text-brand-lilac mb-3 uppercase">ΕΞΕΛΙΞΗ</h3>
-                            <p class="text-gray-600 leading-relaxed font-light">Ολιστική υποστήριξη στα διαφορετικά συστήματα της ζωής σας, διαχείριση συναισθημάτων και ουσιαστική ενίσχυση της ψυχικής ανθεκτικότητας.</p>
-                        </div>
-                    </div>
+                    <h3 class="font-serif text-2xl text-gray-800 group-hover:text-white mb-6 relative z-10 transition-colors duration-500">ΟΙΚΟΓΕΝΕΙΑΚΗ<br>ΘΕΡΑΠΕΙΑ<br>&nbsp;</h3>
+                    <p class="text-gray-600 group-hover:text-brand-offwhite/90 text-sm leading-relaxed mb-8 relative z-10 transition-colors duration-500 line-clamp-6">
+                        Η οικογενειακή θεραπεία προσφέρει έναν χώρο όπου όλα τα μέλη της οικογένειας μπορούν να ακουστούν και να επεξεργαστούν τις δυσκολίες που αντιμετωπίζουν συλλογικά. Απευθύνεται σε οικογένειες που βιώνουν εντάσεις, αλλαγές στη δυναμική τους (π.χ. διαζύγιο, απώλεια, μετανάστευση), ή όταν ένα μέλος εκδηλώνει ψυχικές διαταραχές ή συμπεριφορικά προβλήματα. Μέσα από τη συστημική προσέγγιση διερευνώνται οι τρόποι αλληλεπίδρασης και αναζητούνται νέες ισορροπίες. Στόχος είναι η βελτίωση της επικοινωνίας, η ενίσχυση της συνοχής και η καλλιέργεια υποστηρικτικών σχέσεων.
+                    </p>
+                    <button class="flex items-center gap-3 text-brand-teal group-hover:text-white font-semibold tracking-wider text-sm uppercase transition-colors relative z-10">
+                        ΚΛΕΙΣΕ ΣΥΝΕΔΡΙΑ <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -569,22 +364,22 @@
             <div class="w-full lg:w-5/12 reveal">
                 <span class="font-semibold tracking-widest uppercase text-sm text-brand-peach mb-4 block">ΕΠΙΚΟΙΝΩΝΙΑ</span>
                 <h2 class="font-serif text-4xl md:text-5xl mb-10">Ας κάνουμε το πρώτο βήμα.</h2>
-                <p class="text-white/80 font-light text-lg mb-12">Είμαι εδώ για να σας ακούσω. Επικοινωνήστε μαζί μου για να προγραμματίσουμε τη συνεδρία σας.</p>
+                <p class="text-white/80 font-light text-lg mb-12">Είμαι εδώ για να σας ακούσω. Επικοινωνήστε μαζί μου για να προγραμματίσουμε τη συνεδρία σας στον χώρο μου στη Νέα Ιωνία.</p>
                 
                 <div class="space-y-8">
-                    <div class="flex items-start gap-4 group">
-                        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-peach group-hover:text-brand-teal transition-colors">
-                            <i data-lucide="monitor-smartphone" class="w-5 h-5 text-brand-peach group-hover:text-brand-teal"></i>
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-brand-peach"></i>
                         </div>
                         <div>
-                            <h4 class="text-sm uppercase tracking-widest text-brand-peach font-semibold mb-1">ΣΥΝΕΔΡΙΕΣ</h4>
-                            <p class="text-lg">Διαδικτυακά είτε κατόπιν συνεννόησης δια ζώσης</p>
+                            <h4 class="text-sm uppercase tracking-widest text-brand-peach font-semibold mb-1">ΔΙΕΥΘΥΝΣΗ</h4>
+                            <p class="text-lg">Σελευκείας 2-4, Νέα Ιωνία, Αττική</p>
                         </div>
                     </div>
                     
-                    <div class="flex items-start gap-4 group">
-                        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-peach group-hover:text-brand-teal transition-colors">
-                            <i data-lucide="phone" class="w-5 h-5 text-brand-peach group-hover:text-brand-teal"></i>
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="phone" class="w-5 h-5 text-brand-peach"></i>
                         </div>
                         <div>
                             <h4 class="text-sm uppercase tracking-widest text-brand-peach font-semibold mb-1">ΤΗΛΕΦΩΝΟ</h4>
@@ -592,9 +387,9 @@
                         </div>
                     </div>
 
-                    <div class="flex items-start gap-4 group">
-                        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-peach group-hover:text-brand-teal transition-colors">
-                            <i data-lucide="mail" class="w-5 h-5 text-brand-peach group-hover:text-brand-teal"></i>
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="mail" class="w-5 h-5 text-brand-peach"></i>
                         </div>
                         <div>
                             <h4 class="text-sm uppercase tracking-widest text-brand-peach font-semibold mb-1">EMAIL</h4>
@@ -602,9 +397,9 @@
                         </div>
                     </div>
 
-                    <div class="flex items-start gap-4 group">
-                        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-peach group-hover:text-brand-teal transition-colors">
-                            <i data-lucide="clock" class="w-5 h-5 text-brand-peach group-hover:text-brand-teal"></i>
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="clock" class="w-5 h-5 text-brand-peach"></i>
                         </div>
                         <div>
                             <h4 class="text-sm uppercase tracking-widest text-brand-peach font-semibold mb-1">ΩΡΑΡΙΟ</h4>
@@ -614,39 +409,42 @@
                 </div>
 
                 <div class="mt-12 flex gap-4">
-                    <a href="https://www.instagram.com/healyouwell?igsh=ZDJ1NXo2dno4ZGF5" target="_blank" class="h-14 px-6 rounded-full bg-white/10 flex items-center gap-3 hover:bg-brand-peach hover:text-brand-teal transition-all duration-300 hover:-translate-y-1 group">
+                    <a href="https://www.instagram.com/healyouwell?igsh=ZDJ1NXo2dno4ZGF5" target="_blank" class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-peach hover:text-brand-teal transition-all duration-300">
                         <i data-lucide="instagram" class="w-6 h-6"></i>
-                        <span class="text-sm font-semibold tracking-widest">@healyouwell</span>
+                    </a>
+                    <a href="https://www.doctoranytime.gr/d/Psychologos/aleksandros-parthenis" target="_blank" class="h-14 px-6 rounded-full bg-white/10 flex items-center gap-3 hover:bg-white transition-all duration-300 group">
+                        <img src="https://www.doctoranytime.gr/images/logo-rebranding.svg" alt="Doctoranytime" class="h-5 brightness-0 invert group-hover:filter-none transition-all">
+                        <span class="text-sm font-semibold tracking-widest group-hover:text-brand-teal transition-colors">ΚΛΕΙΣΕ ΜΕΣΩ DOCTORANYTIME</span>
                     </a>
                 </div>
             </div>
 
             <div class="w-full lg:w-7/12 reveal" style="transition-delay: 200ms;">
                 <div class="bg-white rounded-[40px] p-10 md:p-14 shadow-2xl text-gray-800">
-                    <h3 class="font-serif text-3xl mb-4 text-brand-teal uppercase">ΦΟΡΜΑ ΕΝΔΙΑΦΕΡΟΝΤΟΣ</h3>
-                    <p class="text-gray-500 mb-8 font-light">Για να κλείσετε την 1η Δωρεάν Συνεδρία Γνωριμίας, συμπληρώστε την παρακάτω φόρμα και θα επικοινωνήσω μαζί σας!</p>
+                    <h3 class="font-serif text-3xl mb-4 text-brand-teal">Φόρμα Ενδιαφέροντος</h3>
+                    <p class="text-gray-500 mb-8 font-light">Για να κλείσεις την 1η Δωρεάν Συνεδρία Γνωριμίας, συμπλήρωσε την παρακάτω φόρμα και θα επικοινωνήσω μαζί σου!</p>
                     
-                    <form action="https://formspree.io/f/mdawporz" method="POST" class="space-y-6" id="appointmentForm">
+                    <form class="space-y-6" id="appointmentForm" onsubmit="event.preventDefault(); alert('Η φόρμα είναι έτοιμη για διασύνδεση με το σύστημα GoHighLevel σας.');">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="space-y-2">
                                 <label class="text-sm font-semibold tracking-widest uppercase text-gray-500">ΟΝΟΜΑΤΕΠΩΝΥΜΟ *</label>
-                                <input type="text" name="full_name" required class="w-full px-5 py-4 bg-brand-offwhite rounded-2xl border border-transparent focus:border-brand-teal focus:ring-0 outline-none transition-all">
+                                <input type="text" required class="w-full px-5 py-4 bg-brand-offwhite rounded-2xl border border-transparent focus:border-brand-teal focus:ring-0 outline-none transition-all" placeholder="Το όνομά σας">
                             </div>
                             <div class="space-y-2">
                                 <label class="text-sm font-semibold tracking-widest uppercase text-gray-500">ΤΗΛΕΦΩΝΟ *</label>
-                                <input type="tel" name="phone" required class="w-full px-5 py-4 bg-brand-offwhite rounded-2xl border border-transparent focus:border-brand-teal focus:ring-0 outline-none transition-all">
+                                <input type="tel" required class="w-full px-5 py-4 bg-brand-offwhite rounded-2xl border border-transparent focus:border-brand-teal focus:ring-0 outline-none transition-all" placeholder="Το τηλέφωνό σας">
                             </div>
                         </div>
                         
                         <div class="space-y-2">
                             <label class="text-sm font-semibold tracking-widest uppercase text-gray-500">EMAIL</label>
-                            <input type="email" name="email" class="w-full px-5 py-4 bg-brand-offwhite rounded-2xl border border-transparent focus:border-brand-teal focus:ring-0 outline-none transition-all">
+                            <input type="email" class="w-full px-5 py-4 bg-brand-offwhite rounded-2xl border border-transparent focus:border-brand-teal focus:ring-0 outline-none transition-all" placeholder="Το email σας (προαιρετικό)">
                         </div>
 
                         <div class="space-y-2">
                             <label class="text-sm font-semibold tracking-widest uppercase text-gray-500">ΕΝΔΙΑΦΕΡΟΜΑΙ ΓΙΑ: *</label>
                             <div class="relative">
-                                <select name="service" required class="w-full px-5 py-4 bg-brand-offwhite rounded-2xl border border-transparent focus:border-brand-teal focus:ring-0 outline-none transition-all appearance-none text-gray-700 cursor-pointer">
+                                <select required class="w-full px-5 py-4 bg-brand-offwhite rounded-2xl border border-transparent focus:border-brand-teal focus:ring-0 outline-none transition-all appearance-none text-gray-700 cursor-pointer">
                                     <option value="" disabled selected>Επιλέξτε Υπηρεσία</option>
                                     <option value="Ατομική Ενηλίκων">Ατομική Θεραπεία Ενηλίκων</option>
                                     <option value="Ατομική Εφήβων">Ατομική Θεραπεία Εφήβων</option>
@@ -654,7 +452,6 @@
                                     <option value="Συμβουλευτική Γονέων">Συμβουλευτική Γονέων</option>
                                     <option value="Συμβουλευτική Ζεύγους">Συμβουλευτική Ζεύγους</option>
                                     <option value="Οικογενειακή Θεραπεία">Οικογενειακή Θεραπεία</option>
-                                    <option value="Online Ψυχοθεραπεία">Online Ψυχοθεραπεία</option>
                                 </select>
                                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5 text-gray-500">
                                     <i data-lucide="chevron-down" class="w-5 h-5"></i>
@@ -664,7 +461,7 @@
 
                         <div class="space-y-2">
                             <label class="text-sm font-semibold tracking-widest uppercase text-gray-500">ΣΥΝΤΟΜΟ ΜΗΝΥΜΑ (ΠΡΟΑΙΡΕΤΙΚΟ)</label>
-                            <textarea name="message" rows="4" class="w-full px-5 py-4 bg-brand-offwhite rounded-2xl border border-transparent focus:border-brand-teal focus:ring-0 outline-none transition-all resize-none"></textarea>
+                            <textarea rows="4" class="w-full px-5 py-4 bg-brand-offwhite rounded-2xl border border-transparent focus:border-brand-teal focus:ring-0 outline-none transition-all resize-none" placeholder="Περιγράψτε με λίγα λόγια..."></textarea>
                         </div>
 
                         <button type="submit" class="w-full bg-brand-teal text-white py-5 rounded-2xl font-semibold tracking-widest uppercase hover:bg-brand-teal/90 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3">
@@ -679,7 +476,7 @@
     <footer class="bg-gray-900 text-white/50 py-12 border-t border-white/10 text-center relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center">
             <img src="https://github.com/agelmet/NTINOPOULOU/blob/main/logoo.jpg?raw=true" 
-                 alt="Logo" class="w-20 h-20 rounded-full mb-6 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer" onclick="window.scrollTo(0,0)">
+                 alt="Logo" class="w-16 h-16 rounded-full mb-6 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer" onclick="window.scrollTo(0,0)">
             <p class="text-sm font-light tracking-wider mb-2">© 2026 Αριάδνη-Αθηνά Ντινοπούλου. Με επιφύλαξη παντός δικαιώματος.</p>
             <p class="text-xs uppercase tracking-widest opacity-60">
                 Designed by <a href="https://advonmedia.com" target="_blank" class="text-brand-peach hover:text-white transition-colors">Advon Media</a>
@@ -696,134 +493,73 @@
         const menu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
-        mobileLinks.forEach(link => { link.addEventListener('click', () => { menu.classList.add('hidden'); }); });
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
 
-        // 3. Navbar Glass Effect
+        // Close mobile menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // 3. Navbar Glass Effect on Scroll
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                navbar.classList.add('shadow-md', 'bg-white/95');
-                navbar.classList.remove('bg-white/60');
+                navbar.classList.add('shadow-md', 'bg-white/90');
+                navbar.classList.remove('bg-white/70');
             } else {
-                navbar.classList.remove('shadow-md', 'bg-white/95');
-                navbar.classList.add('bg-white/60');
+                navbar.classList.remove('shadow-md', 'bg-white/90');
+                navbar.classList.add('bg-white/70');
             }
         });
 
-        // 4. ScrollReveal Observer
-        const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
-        const revealObserver = new IntersectionObserver((entries, observer) => {
+        // 4. ScrollReveal Animation with Intersection Observer
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver(function(entries, observer) {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
                 entry.target.classList.add('active');
                 observer.unobserve(entry.target);
             });
         }, revealOptions);
-        document.querySelectorAll('.reveal').forEach(el => { revealObserver.observe(el); });
 
-        // 5. Image Lightbox
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        function openLightbox(src) {
-            lightboxImg.src = src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            setTimeout(() => { lightboxImg.src = ''; }, 400);
-        }
-
-        // 6. Services Modal Data & Logic
-        const servicesData = {
-            adults: {
-                icon: 'user',
-                title: 'ΑΤΟΜΙΚΗ ΘΕΡΑΠΕΙΑ ΕΝΗΛΙΚΩΝ',
-                text: 'Η ψυχοθεραπεία ενηλίκων απευθύνεται τόσο σε άτομα που επιθυμούν προσωπική ανάπτυξη όσο και σε όσους αντιμετωπίζουν ψυχικές διαταραχές ή δυσκολίες στην καθημερινότητα. Άγχος, κατάθλιψη, διαταραχές προσωπικότητας, τραυματικές εμπειρίες, αλλά και ζητήματα στις σχέσεις, στην εργασία ή στην οικογένεια, αποτελούν συχνά αιτήματα. Στη συστημική προσέγγιση διερευνώνται οι επιρροές των σημαντικών συστημάτων ζωής και αναζητούνται νέοι τρόποι κατανόησης και διαχείρισης. Στόχος είναι η ανακούφιση από τα συμπτώματα, η βελτίωση της ψυχικής ισορροπίας και η ενίσχυση της ποιότητας ζωής.'
-            },
-            teens: {
-                icon: 'smile',
-                title: 'ΑΤΟΜΙΚΗ ΘΕΡΑΠΕΙΑ ΕΦΗΒΩΝ',
-                text: 'Η εφηβεία συνοδεύεται από έντονες συναισθηματικές και κοινωνικές προκλήσεις, αλλά και από την εμφάνιση ψυχικών δυσκολιών όπως άγχος, καταθλιπτική διάθεση, διαταραχές συμπεριφοράς ή προβλήματα στις σχέσεις με οικογένεια και συνομηλίκους. Η ψυχοθεραπεία παρέχει έναν ασφαλή χώρο για τον έφηβο ώστε να εκφράσει ελεύθερα σκέψεις και συναισθήματα, να επεξεργαστεί δυσκολίες και να καλλιεργήσει νέους τρόπους διαχείρισης. Στόχος είναι η ενδυνάμωση της αυτοεκτίμησης, η στήριξη της ταυτότητας και η ενίσχυση της ψυχικής ανθεκτικότητας.'
-            },
-            kids: {
-                icon: 'puzzle',
-                title: 'ΑΤΟΜΙΚΗ ΘΕΡΑΠΕΙΑ ΠΑΙΔΙΩΝ',
-                text: 'Η ψυχοθεραπεία παιδιών στοχεύει στην υποστήριξη της ανάπτυξης και της ψυχικής ευεξίας, όταν το παιδί δυσκολεύεται συναισθηματικά ή συμπεριφορικά. Απευθύνεται σε παιδιά με διαταραχές του φάσματος του αυτισμού, ΔΕΠ-Υ, μαθησιακές δυσκολίες, καθώς και σε όσα βιώνουν άγχος, φόβους, χαμηλή αυτοεκτίμηση ή δυσκολίες στις σχέσεις με συνομηλίκους και οικογένεια. Μέσα από παιχνίδι, δημιουργικές δραστηριότητες και ασφαλή επικοινωνία, το παιδί μαθαίνει να εκφράζει συναισθήματα και ανάγκες, ενώ ενισχύεται η αυτοπεποίθηση και η ικανότητα προσαρμογής του.'
-            },
-            parents: {
-                icon: 'heart-handshake',
-                title: 'ΣΥΜΒΟΥΛΕΥΤΙΚΗ ΓΟΝΕΩΝ',
-                text: 'Η συμβουλευτική γονέων απευθύνεται σε μητέρες και πατέρες που επιθυμούν να κατανοήσουν καλύτερα τις ανάγκες των παιδιών τους και να ενδυναμώσουν τον γονεϊκό τους ρόλο. Συζητούνται δυσκολίες που σχετίζονται με την ανάπτυξη, τη συμπεριφορά, την επικοινωνία ή τη διαχείριση ορίων, αλλά και ζητήματα όπως το διαζύγιο ή αλλαγές στο οικογενειακό πλαίσιο. Στόχος είναι η ενίσχυση της γονεϊκής επάρκειας, η βελτίωση της σχέσης με το παιδί και η δημιουργία ενός πιο ασφαλούς και υποστηρικτικού περιβάλλοντος.'
-            },
-            couples: {
-                icon: 'users',
-                title: 'ΣΥΜΒΟΥΛΕΥΤΙΚΗ ΖΕΥΓΟΥΣ',
-                text: 'Η συμβουλευτική ζεύγους αφορά ζευγάρια που επιθυμούν να βελτιώσουν τη σχέση τους, να διαχειριστούν συγκρούσεις ή να αντιμετωπίσουν κρίσιμες καταστάσεις όπως απιστία, προβλήματα επικοινωνίας, σεξουαλικές δυσκολίες ή μεταβατικές φάσεις ζωής (π.χ. γονεϊκότητα). Η συστημική προσέγγιση βοηθά τους συντρόφους να κατανοήσουν τα μοτίβα που επηρεάζουν τη σχέση τους και να αναπτύξουν νέους τρόπους σύνδεσης. Στόχος είναι η ενίσχυση της αμοιβαίας κατανόησης, η βελτίωση της επικοινωνίας και η ανανέωση της συντροφικότητας.'
-            },
-            family: {
-                icon: 'network',
-                title: 'ΟΙΚΟΓΕΝΕΙΑΚΗ ΘΕΡΑΠΕΙΑ',
-                text: 'Η οικογενειακή θεραπεία προσφέρει έναν χώρο όπου όλα τα μέλη της οικογένειας μπορούν να ακουστούν και να επεξεργαστούν τις δυσκολίες που αντιμετωπίζουν συλλογικά. Απευθύνεται σε οικογένειες που βιώνουν εντάσεις, αλλαγές στη δυναμική τους (π.χ. διαζύγιο, απώλεια, μετανάστευση), ή όταν ένα μέλος εκδηλώνει ψυχικές διαταραχές ή συμπεριφορικά προβλήματα. Μέσα από τη συστημική προσέγγιση διερευνώνται οι τρόποι αλληλεπίδρασης και αναζητούνται νέες ισορροπίες. Στόχος είναι η βελτίωση της επικοινωνίας, η ενίσχυση της συνοχής και η καλλιέργεια υποστηρικτικών σχέσεων.'
-            },
-            online: {
-                icon: 'video',
-                title: 'ONLINE ΨΥΧΟΘΕΡΑΠΕΙΑ',
-                text: 'Η θεραπευτική σχέση χωρίς γεωγραφικούς περιορισμούς. Συνεδρίες μέσω ασφαλούς πλατφόρμας βιντεοκλήσης, τηρώντας αυστηρά το απόρρητο και τη δεοντολογία.'
-            }
-        };
-
-        const serviceModal = document.getElementById('service-modal');
-        function openService(id) {
-            const data = servicesData[id];
-            document.getElementById('modal-icon').innerHTML = `<i data-lucide="${data.icon}" class="w-8 h-8"></i>`;
-            document.getElementById('modal-title').innerText = data.title;
-            document.getElementById('modal-text').innerText = data.text;
-            lucide.createIcons();
-            serviceModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            document.querySelector('.modal-scrollable-content').scrollTop = 0;
-        }
-        function closeServiceModal() {
-            serviceModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Global Escape Key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape") {
-                if (lightbox.classList.contains('active')) closeLightbox();
-                if (serviceModal.classList.contains('active')) closeServiceModal();
-            }
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
         });
 
-        // 7. Vanilla JS 3D Tilt Effect
-        const tiltCards = document.querySelectorAll('[data-tilt]');
-        tiltCards.forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = ((y - centerY) / centerY) * -5;
-                const rotateY = ((x - centerX) / centerX) * 5;
+        // 5. Lightbox Functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-                card.style.transition = 'none';
-                card.style.zIndex = '10';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-                card.style.transition = 'transform 0.5s ease';
-                card.style.zIndex = '1';
-            });
+        function openLightbox(imageSrc) {
+            lightboxImg.src = imageSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            // Wait for transition before clearing src
+            setTimeout(() => {
+                lightboxImg.src = '';
+            }, 300);
+        }
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
         });
     </script>
 </body>
