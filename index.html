@@ -165,16 +165,6 @@
             background-image: linear-gradient(to bottom, transparent 50%, rgba(1, 97, 113, 0.2) 50%);
             background-size: 100% 20px;
         }
-
-        /* Hero Image Custom Positioning for un-cropped head */
-        .hero-img-pos {
-            object-position: 55% 110px; /* Mobile: Shifted right to center her face properly */
-        }
-        @media (min-width: 1024px) {
-            .hero-img-pos {
-                object-position: 80% 130px; /* Desktop: keep her right-aligned, push down 130px */
-            }
-        }
     </style>
 
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -254,27 +244,30 @@
         </div>
     </nav>
 
-    <section id="top" class="relative min-h-[100svh] flex items-center overflow-hidden bg-brand-offwhite lg:pb-0 pb-16">
+    <section id="top" class="bg-brand-offwhite min-h-[100svh] relative overflow-hidden flex items-center justify-center pt-32 pb-32">
         
-        <div class="absolute inset-0 z-0 bg-brand-offwhite">
-            <img src="https://raw.githubusercontent.com/agelmet/NTINOPOULOU/refs/heads/main/sfdlkjfasd.jpg" 
-                 alt="Background" 
-                 class="w-full h-full object-cover hero-img-pos">
-            
-            <div class="absolute bottom-0 w-full h-[60%] bg-gradient-to-t from-brand-offwhite via-brand-offwhite/95 to-transparent lg:hidden pointer-events-none"></div>
-            
-            <div class="hidden lg:block absolute left-0 w-[70%] h-full bg-gradient-to-r from-brand-offwhite via-brand-offwhite/90 to-transparent pointer-events-none"></div>
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <img src="https://github.com/agelmet/NTINOPOULOU/blob/main/asas.jpg?raw=true" alt="Hero Background" class="w-full h-full object-cover opacity-[0.25] mix-blend-multiply scale-105">
+            <div class="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-brand-offwhite"></div>
         </div>
 
-        <div class="max-w-7xl mx-auto px-6 w-full z-10 flex flex-col relative pt-[85vh] md:pt-[70vh] lg:pt-52 pb-12 lg:pb-32">
+        <svg class="absolute top-10 left-0 w-1/2 h-auto opacity-40 pointer-events-none z-0 animate-pulse-slow" viewBox="0 0 500 200" fill="none">
+            <path d="M0 100 C 150 200, 300 0, 500 100" stroke="white" stroke-width="2" fill="none"/>
+            <path d="M0 120 C 180 220, 320 20, 500 120" stroke="rgba(245, 212, 191, 0.5)" stroke-width="1" fill="none"/>
+        </svg>
+        <svg class="absolute bottom-40 right-0 w-2/3 h-auto opacity-50 pointer-events-none z-0" viewBox="0 0 600 200" fill="none">
+            <path d="M0 100 C 200 0, 400 200, 600 50" stroke="white" stroke-width="3" fill="none"/>
+        </svg>
+        
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-brand-teal/5 rounded-full animate-spin-slow pointer-events-none z-0"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] border border-brand-peach/10 rounded-full animate-spin-slow pointer-events-none z-0" style="animation-direction: reverse; animation-duration: 30s;"></div>
+
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-peach/40 rounded-full mix-blend-multiply filter blur-[80px] animate-blob z-0"></div>
+        <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-brand-lilac/40 rounded-full mix-blend-multiply filter blur-[80px] animate-blob animation-delay-2000 z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-6 w-full z-10 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 relative">
             
-            <div class="w-full lg:w-[45%] text-center lg:text-left flex flex-col items-center lg:items-start z-10 relative lg:-translate-x-6">
-                
-                <div class="opacity-0 animate-[fadeInUp_1s_ease-out_forwards] mb-4 lg:mb-6 bg-brand-teal/5 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none border border-brand-teal/10 lg:border-none px-4 py-2 lg:px-0 lg:py-0 rounded-full lg:rounded-none inline-block">
-                    <p class="text-brand-teal font-serif text-xs md:text-sm lg:text-lg font-medium drop-shadow-sm">
-                        ΣΥΣΤΗΜΙΚΗ ΨΥΧΟΘΕΡΑΠΕΙΑ <span class="text-gray-600 font-light">με επίκεντρο την</span> ΕΞΕΛΙΞΗ ΚΑΙ ΤΗΝ ΑΠΟΔΟΧΗ.
-                    </p>
-                </div>
+            <div class="w-full lg:w-1/2 text-center lg:text-left flex flex-col items-center lg:items-start z-10">
                 
                 <span class="opacity-0 animate-[fadeInUp_1.1s_ease-out_forwards] text-brand-teal font-bold tracking-[0.2em] text-[10px] md:text-sm mb-3 block uppercase drop-shadow-sm">
                     • ΨΥΧΟΘΕΡΑΠΕΙΑ & ΣΥΜΒΟΥΛΕΥΤΙΚΗ
@@ -287,6 +280,13 @@
                 <p class="opacity-0 animate-[fadeInUp_1.2s_ease-out_forwards] text-gray-700 font-medium text-xs md:text-sm lg:text-lg leading-relaxed mb-6 lg:mb-10 max-w-md mx-auto lg:mx-0 drop-shadow-sm">
                     Εδώ δημιουργούμε μαζί έναν χώρο ουσιαστικής σύνδεσης, κατανόησης και αλλαγής. με βάση μια σύγχρονη και εξατομικευμένη θεραπευτική προσέγγιση
                 </p>
+
+                <div class="block lg:hidden opacity-0 animate-[fadeInUp_1.3s_ease-out_forwards] w-full max-w-[320px] mx-auto mb-10 relative">
+                    <div class="absolute inset-0 bg-brand-orange blur-[40px] opacity-40 rounded-full scale-110"></div>
+                    <div class="relative overflow-hidden rounded-t-[150px] rounded-b-[20px] border-[4px] border-white/60 shadow-xl aspect-[3/4] cursor-pointer" onclick="openLightbox('https://github.com/agelmet/NTINOPOULOU/blob/main/sfdlkjfasd.jpg?raw=true')">
+                        <img src="https://github.com/agelmet/NTINOPOULOU/blob/main/sfdlkjfasd.jpg?raw=true" alt="Αριάδνη-Αθηνά Ντινοπούλου" class="w-full h-full object-cover">
+                    </div>
+                </div>
 
                 <div class="opacity-0 animate-[fadeInUp_1.4s_ease-out_forwards] mb-8 lg:mb-12 flex flex-col items-center lg:items-start">
                     <h1 class="font-serif text-3xl sm:text-4xl lg:text-6xl tracking-[0.05em] text-brand-teal leading-[1.15] mb-3 lg:mb-4 drop-shadow-md">
@@ -306,6 +306,15 @@
                     <a href="#about" class="bg-white border-2 border-brand-teal/20 text-brand-teal px-8 py-4 rounded-full text-sm font-semibold tracking-widest hover:border-brand-teal transition-all shadow-md hover:shadow-lg hover:-translate-y-1 text-center">
                         Γνωρίστε με
                     </a>
+                </div>
+            </div>
+
+            <div class="hidden lg:flex w-full lg:w-1/2 justify-end relative opacity-0 animate-[fadeInUp_1.5s_ease-out_forwards] z-10">
+                <div class="relative w-full max-w-[380px] xl:max-w-[450px] cursor-pointer group" onclick="openLightbox('https://github.com/agelmet/NTINOPOULOU/blob/main/sfdlkjfasd.jpg?raw=true')">
+                    <div class="absolute inset-0 bg-brand-orange blur-[60px] opacity-40 rounded-full scale-110"></div>
+                    <div class="relative overflow-hidden rounded-t-[180px] rounded-b-[30px] border-[6px] border-white/60 shadow-2xl aspect-[3/4]">
+                        <img src="https://github.com/agelmet/NTINOPOULOU/blob/main/sfdlkjfasd.jpg?raw=true" alt="Αριάδνη-Αθηνά Ντινοπούλου" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
+                    </div>
                 </div>
             </div>
         </div>
