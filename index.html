@@ -153,8 +153,6 @@
         .modal-scrollable-content::-webkit-scrollbar-thumb { background: rgba(1, 97, 113, 0.3); border-radius: 10px; }
         .modal-scrollable-content::-webkit-scrollbar-thumb:hover { background: rgba(1, 97, 113, 0.6); }
 
-        .hero-bg { background: linear-gradient(180deg, #ffffff 0%, #eef5f4 100%); }
-
         .tilt-card {
             transform-style: preserve-3d;
             transform: perspective(1000px);
@@ -246,63 +244,50 @@
         </div>
     </nav>
 
-    <section id="top" class="hero-bg min-h-screen relative overflow-hidden flex items-center justify-center pt-32 pb-32">
+    <section id="top" class="relative min-h-[100svh] flex items-center overflow-hidden bg-brand-offwhite lg:pb-0 pb-12">
         
-        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            <img src="https://raw.githubusercontent.com/agelmet/NTINOPOULOU/refs/heads/main/Gemini_Generated_Image_7zb5g97zb5g97zb5-2.png" alt="Hero Background" class="w-full h-full object-cover opacity-[0.25] mix-blend-multiply scale-105">
-            <div class="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-brand-offwhite"></div>
+        <div class="absolute inset-0 z-0">
+            <img src="https://raw.githubusercontent.com/agelmet/NTINOPOULOU/refs/heads/main/sfdlkjfasd.jpg" 
+                 alt="Background" 
+                 class="w-full h-full object-cover object-[center_top] lg:object-[center_15%]">
+            
+            <div class="absolute bottom-0 w-full h-[65%] bg-gradient-to-t from-brand-offwhite via-brand-offwhite/95 to-transparent lg:hidden pointer-events-none"></div>
+            
+            <div class="hidden lg:block absolute left-0 w-[65%] h-full bg-gradient-to-r from-brand-offwhite via-brand-offwhite/90 to-transparent pointer-events-none"></div>
+            
+            <div class="absolute inset-0 bg-brand-teal/5 mix-blend-multiply pointer-events-none"></div>
         </div>
 
-        <svg class="absolute top-10 left-0 w-1/2 h-auto opacity-40 pointer-events-none z-0 animate-pulse-slow" viewBox="0 0 500 200" fill="none">
-            <path d="M0 100 C 150 200, 300 0, 500 100" stroke="white" stroke-width="2" fill="none"/>
-            <path d="M0 120 C 180 220, 320 20, 500 120" stroke="rgba(245, 212, 191, 0.5)" stroke-width="1" fill="none"/>
-        </svg>
-        <svg class="absolute bottom-40 right-0 w-2/3 h-auto opacity-50 pointer-events-none z-0" viewBox="0 0 600 200" fill="none">
-            <path d="M0 100 C 200 0, 400 200, 600 50" stroke="white" stroke-width="3" fill="none"/>
-        </svg>
-        
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-brand-teal/5 rounded-full animate-spin-slow pointer-events-none z-0"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] border border-brand-peach/10 rounded-full animate-spin-slow pointer-events-none z-0" style="animation-direction: reverse; animation-duration: 30s;"></div>
-
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-peach/40 rounded-full mix-blend-multiply filter blur-[80px] animate-blob z-0"></div>
-        <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-brand-lilac/40 rounded-full mix-blend-multiply filter blur-[80px] animate-blob animation-delay-2000 z-0"></div>
-
-        <div class="max-w-7xl mx-auto px-6 w-full z-10 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 relative">
+        <div class="max-w-7xl mx-auto px-6 w-full z-10 flex flex-col relative pt-[45vh] lg:pt-28">
             
-            <div class="w-full lg:w-1/2 text-center lg:text-left flex flex-col items-center lg:items-start z-10">
+            <div class="w-full lg:w-3/5 text-center lg:text-left flex flex-col items-center lg:items-start z-10">
                 
-                <span class="opacity-0 animate-[fadeInUp_1s_ease-out_forwards] text-brand-teal font-semibold tracking-widest text-xs md:text-sm mb-3 block uppercase">
+                <div class="opacity-0 animate-[fadeInUp_1s_ease-out_forwards] mb-4 lg:mb-6 bg-brand-teal/5 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none border border-brand-teal/10 lg:border-none px-4 py-2 lg:px-0 lg:py-0 rounded-full lg:rounded-none inline-block">
+                    <p class="text-brand-teal font-serif text-sm lg:text-lg font-medium">
+                        ΣΥΣΤΗΜΙΚΗ ΨΥΧΟΘΕΡΑΠΕΙΑ <span class="text-gray-600 font-light">με επίκεντρο την</span> ΕΞΕΛΙΞΗ ΚΑΙ ΤΗΝ ΑΠΟΔΟΧΗ.
+                    </p>
+                </div>
+                
+                <span class="opacity-0 animate-[fadeInUp_1.1s_ease-out_forwards] text-brand-peach font-bold tracking-[0.2em] text-[10px] md:text-sm mb-3 block uppercase drop-shadow-sm">
                     • ΨΥΧΟΘΕΡΑΠΕΙΑ & ΣΥΜΒΟΥΛΕΥΤΙΚΗ
                 </span>
                 
-                <p class="opacity-0 animate-[fadeInUp_1s_ease-out_forwards] font-serif italic text-xl md:text-2xl text-gray-700 font-light mb-6">
+                <p class="opacity-0 animate-[fadeInUp_1.1s_ease-out_forwards] font-serif italic text-lg lg:text-2xl text-gray-800 font-light mb-6 lg:mb-8 drop-shadow-sm">
                     Η αλλαγή δεν περιμένει..ξεκινά από Εσένα
                 </p>
 
-                <p class="opacity-0 animate-[fadeInUp_1.2s_ease-out_forwards] text-gray-600 text-base md:text-lg leading-relaxed mb-8 max-w-md mx-auto lg:mx-0">
+                <p class="opacity-0 animate-[fadeInUp_1.2s_ease-out_forwards] text-gray-600 text-sm lg:text-lg leading-relaxed mb-6 lg:mb-10 max-w-md mx-auto lg:mx-0">
                     Εδώ δημιουργούμε μαζί έναν χώρο ουσιαστικής σύνδεσης, κατανόησης και αλλαγής. με βάση μια σύγχρονη και εξατομικευμένη θεραπευτική προσέγγιση
                 </p>
-                
-                <div class="block lg:hidden opacity-0 animate-[fadeInUp_1.3s_ease-out_forwards] w-full max-w-[320px] mx-auto mb-10 relative">
-                    <div class="absolute inset-0 bg-brand-orange blur-[40px] opacity-40 rounded-full scale-110"></div>
-                    <div class="relative overflow-hidden rounded-t-[150px] rounded-b-[20px] border-[4px] border-white/60 shadow-xl aspect-[3/4] group cursor-pointer" onclick="openLightbox('https://github.com/agelmet/NTINOPOULOU/blob/main/sfdlkjfasd.jpg?raw=true')">
-                        <img src="https://github.com/agelmet/NTINOPOULOU/blob/main/sfdlkjfasd.jpg?raw=true" alt="Hero Image" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center p-6 text-center pointer-events-none">
-                            <p class="text-white font-serif text-lg font-medium drop-shadow-md leading-relaxed">
-                                ΣΥΣΤΗΜΙΚΗ ΨΥΧΟΘΕΡΑΠΕΙΑ<br><span class="text-brand-peach">με επίκεντρο την</span><br>ΕΞΕΛΙΞΗ ΚΑΙ ΤΗΝ ΑΠΟΔΟΧΗ.
-                            </p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="opacity-0 animate-[fadeInUp_1.4s_ease-out_forwards] mb-10 flex flex-col items-center lg:items-start">
-                    <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-[0.05em] text-brand-teal leading-[1.15] mb-5 drop-shadow-sm">
+                <div class="opacity-0 animate-[fadeInUp_1.4s_ease-out_forwards] mb-8 lg:mb-12 flex flex-col items-center lg:items-start">
+                    <h1 class="font-serif text-3xl sm:text-4xl lg:text-6xl tracking-[0.05em] text-brand-teal leading-[1.15] mb-4 drop-shadow-md">
                         ΑΡΙΑΔΝΗ Α.<br>ΝΤΙΝΟΠΟΥΛΟΥ
                     </h1>
                     
                     <div class="flex flex-col gap-1.5 lg:border-l-2 lg:border-brand-peach lg:pl-4 text-center lg:text-left">
-                        <span class="font-medium text-gray-800 text-lg md:text-xl">Ψυχολόγος & Συστημική Ψυχοθεραπεύτρια</span>
-                        <span class="text-sm tracking-widest text-gray-500">MSc Ιατρική Σχολή Αθηνών</span>
+                        <span class="font-medium text-gray-800 text-base lg:text-xl">Ψυχολόγος & Συστημική Ψυχοθεραπεύτρια</span>
+                        <span class="text-xs lg:text-sm tracking-widest text-gray-500">MSc Ιατρική Σχολή Αθηνών</span>
                     </div>
                 </div>
 
@@ -315,26 +300,12 @@
                     </a>
                 </div>
             </div>
-
-            <div class="hidden lg:flex w-full lg:w-1/2 justify-end relative opacity-0 animate-[fadeInUp_1.5s_ease-out_forwards] z-10">
-                <div class="relative w-full max-w-[380px] xl:max-w-[450px] cursor-pointer group" onclick="openLightbox('https://github.com/agelmet/NTINOPOULOU/blob/main/sfdlkjfasd.jpg?raw=true')">
-                    <div class="absolute inset-0 bg-brand-orange blur-[60px] opacity-40 rounded-full scale-110"></div>
-                    <div class="relative overflow-hidden rounded-t-[180px] rounded-b-[30px] border-[6px] border-white/60 shadow-2xl aspect-[3/4]">
-                        <img src="https://github.com/agelmet/NTINOPOULOU/blob/main/sfdlkjfasd.jpg?raw=true" alt="Hero Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
-                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center p-8 text-center pointer-events-none transition-all duration-500">
-                            <p class="text-white font-serif text-2xl font-medium drop-shadow-md leading-relaxed">
-                                ΣΥΣΤΗΜΙΚΗ ΨΥΧΟΘΕΡΑΠΕΙΑ<br><span class="text-brand-peach text-xl font-light">με επίκεντρο την</span><br>ΕΞΕΛΙΞΗ ΚΑΙ ΤΗΝ ΑΠΟΔΟΧΗ.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <section id="trust" class="relative z-20 -mt-20 px-6">
+    <section id="trust" class="relative z-20 -mt-8 lg:-mt-20 px-6">
         <div class="max-w-7xl mx-auto">
-            <div class="bg-white/80 backdrop-blur-2xl border border-white rounded-[40px] shadow-[0_20px_60px_-15px_rgba(1,97,113,0.1)] p-8 md:p-12">
+            <div class="bg-white/90 backdrop-blur-2xl border border-white rounded-[40px] shadow-[0_20px_60px_-15px_rgba(1,97,113,0.1)] p-8 md:p-12">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                     
                     <div class="reveal group">
@@ -370,7 +341,7 @@
         <div class="absolute top-0 right-0 w-1/3 h-full bg-white/50 skew-x-12 translate-x-32 z-0 pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="flex flex-col lg:flex-row gap-16 items-start">
+            <div class="flex flex-col lg:flex-row gap-16 items-start lg:items-center">
                 
                 <div class="w-full lg:w-1/2 flex flex-col space-y-10">
                     <div class="order-1 reveal">
@@ -401,11 +372,11 @@
                     </div>
                 </div>
 
-                <div class="hidden lg:flex w-1/2 justify-center lg:justify-end reveal relative lg:mt-32 lg:translate-y-16">
+                <div class="hidden lg:flex w-1/2 justify-center lg:justify-end reveal relative lg:pl-10">
                     <div class="absolute inset-0 bg-brand-teal/10 blur-[80px] rounded-full scale-110"></div>
                     <img src="https://github.com/agelmet/NTINOPOULOU/blob/main/122121.jpg?raw=true" 
                          alt="Portrait" 
-                         class="w-full max-w-[420px] rounded-[40px] shadow-[0_30px_60px_-15px_rgba(1,97,113,0.3)] animate-float cursor-pointer object-cover relative z-10 border-4 border-white"
+                         class="w-full max-w-[550px] rounded-[40px] shadow-[0_30px_60px_-15px_rgba(1,97,113,0.3)] animate-float cursor-pointer object-cover aspect-[4/5] relative z-10 border-4 border-white"
                          onclick="openLightbox(this.src)">
                 </div>
 
